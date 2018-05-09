@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.kaistart.kslogger.widget.TipView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="10dp"
+        app:TipBgColor="#345454"
+        app:TipBorderRadius="12dp"
+        app:TipRectHeight="24dp"
+        app:TipTextColor="@color/cardview_light_background"
+        app:TipTextContent="小开客服在此，有何指教"
+        app:TipTextSize="12sp"
+        app:trangleBottomLength="8dp"
+        app:trangleGravity="RightTop"
+        app:trangleHeight="6dp"
+        app:trangleMargin="5dp" />
+
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="cn.blinkdagger.androidLab.UI.Activity.MainActivity">
+
+    <cn.blinkdagger.androidLab.widget.SelectBarView
+        android:id="@+id/main_bar"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        app:bgColor="#FFFFFF"
+        app:borderColor="#333333"
+        app:borderRadius="18dp"
+        app:borderWidth="1dp"
+        app:checkedBgColor="#333333"
+        app:checkedTextColor="#FFFFFF"
+        app:splitLineColor="#333333"
+        app:splitLineWidth="1dp"
+        app:textColor="#333333"
+        app:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="muzli.json"
+        app:lottie_loop="true"
+        />
+
+    <TextView
+        android:id="@+id/click_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:background="@color/black_overlay"
+        android:text="点击"
+        android:textSize="15dp"
+        android:textColor="@color/colorAccent"/>
+
+
+    <TextView
+        android:id="@+id/scroll_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black_overlay"
+        android:text="点击"
+        android:textSize="15dp"
+        android:textColor="@color/colorAccent"/>
+</LinearLayout>
