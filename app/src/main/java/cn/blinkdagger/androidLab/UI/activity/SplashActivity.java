@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.UI.Activity;
+package cn.blinkdagger.androidLab.UI.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

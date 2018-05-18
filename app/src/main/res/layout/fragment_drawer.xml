@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.blinkdagger.androidLab.UI.Fragment.DrawerFragment">
+    tools:context="cn.blinkdagger.androidLab.UI.fragment.DrawerFragment">
 
     <ImageView
         android:id="@+id/drawer_iv"

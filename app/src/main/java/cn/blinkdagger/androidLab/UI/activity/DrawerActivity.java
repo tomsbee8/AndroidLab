@@ -1,7 +1,5 @@
-package cn.blinkdagger.androidLab.UI.Activity;
+package cn.blinkdagger.androidLab.UI.activity;
 
-import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
@@ -11,10 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.githang.statusbar.StatusBarCompat;
 import cn.blinkdagger.androidLab.Base.BaseActivity;
 import cn.blinkdagger.androidLab.R;
-import cn.blinkdagger.androidLab.UI.Fragment.DrawerFragment;
+import cn.blinkdagger.androidLab.UI.fragment.DrawerFragment;
 import cn.blinkdagger.androidLab.Utils.SystemBarUtil;
 
 import butterknife.BindView;

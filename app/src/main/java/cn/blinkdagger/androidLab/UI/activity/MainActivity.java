@@ -1,7 +1,6 @@
-package cn.blinkdagger.androidLab.UI.Activity;
+package cn.blinkdagger.androidLab.UI.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,8 +8,8 @@ import android.widget.TextView;
 
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.Utils.SystemBarUtil;
-import cn.blinkdagger.androidLab.widget.CustomPopupWindow;
-import cn.blinkdagger.androidLab.widget.SelectBarView;
+import cn.blinkdagger.androidLab.Widget.CustomPopupWindow;
+import cn.blinkdagger.androidLab.Widget.SelectBarView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private SelectBarView barView;
@@ -31,10 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemClick(int index) {
                 if (index == 1) {
-                    Intent intent = new Intent(MainActivity.this, cn.blinkdagger.androidLab.UI.Activity.ImmersiveModeActivity.class);
+                    Intent intent = new Intent(MainActivity.this, cn.blinkdagger.androidLab.UI.activity.ImmersiveModeActivity.class);
                     startActivity(intent);
                 }else if(index == 2){
-                    Intent intent = new Intent(MainActivity.this, cn.blinkdagger.androidLab.UI.Activity.DrawerActivity.class);
+                    Intent intent = new Intent(MainActivity.this, cn.blinkdagger.androidLab.UI.activity.DrawerActivity.class);
                     startActivity(intent);
                 }
             }
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .showAsDropDown(clickTv);
                 break;
             case R.id.scroll_tv:
-                Intent intent = new Intent(this, cn.blinkdagger.androidLab.UI.Activity.CollapsingActivity.class);
+                Intent intent = new Intent(this, cn.blinkdagger.androidLab.UI.activity.CollapsingActivity.class);
                 startActivity(intent);
                 break;
             default:

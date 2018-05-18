@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.UI.Fragment;
+package cn.blinkdagger.androidLab.UI.fragment;
 
 import android.content.Context;
 import android.os.Bundle;

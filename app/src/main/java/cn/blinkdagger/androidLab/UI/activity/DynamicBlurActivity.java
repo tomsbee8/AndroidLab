@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.UI.Activity;
+package cn.blinkdagger.androidLab.UI.activity;
 
 import cn.blinkdagger.androidLab.Base.BaseActivity;
 import cn.blinkdagger.androidLab.R;

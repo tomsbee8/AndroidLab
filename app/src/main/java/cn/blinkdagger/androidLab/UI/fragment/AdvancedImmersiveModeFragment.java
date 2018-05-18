@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package cn.blinkdagger.androidLab.UI.Fragment;
+package cn.blinkdagger.androidLab.UI.fragment;
 
 import android.graphics.Color;
 import android.os.Build;

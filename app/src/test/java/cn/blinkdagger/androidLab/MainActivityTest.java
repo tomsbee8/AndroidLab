@@ -1,4 +1,4 @@
-package com.kaistart.kslogger.UI.Activity;
+package cn.blinkdagger.androidLab;
 
 import org.junit.After;
 import org.junit.Before;

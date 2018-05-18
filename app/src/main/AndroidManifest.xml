@@ -17,10 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UI.Activity.MainActivity"
+            android:name=".UI.activity.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".UI.Activity.SplashActivity"
+            android:name=".UI.activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash"
             android:theme="@style/FullscreenTheme">
@@ -31,14 +31,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.Activity.CollapsingActivity"
+            android:name=".UI.activity.CollapsingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UI.Activity.NestedScrollActivity" />
+        <activity android:name=".UI.activity.NestedScrollActivity" />
         <activity
-            android:name=".UI.Activity.ImmersiveModeActivity"
+            android:name=".UI.activity.ImmersiveModeActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".UI.Activity.DrawerActivity"
-            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".UI.activity.DrawerActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".UI.activity.BindingListActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

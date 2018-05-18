@@ -1,13 +1,12 @@
-package cn.blinkdagger.androidLab.UI.Activity;
+package cn.blinkdagger.androidLab.UI.activity;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import cn.blinkdagger.androidLab.R;
-import cn.blinkdagger.androidLab.UI.Fragment.AdvancedImmersiveModeFragment;
+import cn.blinkdagger.androidLab.UI.fragment.AdvancedImmersiveModeFragment;
 
 public class ImmersiveModeActivity extends AppCompatActivity {
 

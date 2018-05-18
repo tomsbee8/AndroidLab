@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.widget;
+package cn.blinkdagger.androidLab.Widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

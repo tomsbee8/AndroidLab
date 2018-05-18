@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.UI.Activity;
+package cn.blinkdagger.androidLab.UI.activity;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;

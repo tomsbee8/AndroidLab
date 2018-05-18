@@ -10,9 +10,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cn.blinkdagger.androidLab.UI.Activity.MainActivity">
+    tools:context="cn.blinkdagger.androidLab.UI.activity.MainActivity">
 
-    <cn.blinkdagger.androidLab.widget.SelectBarView
+    <cn.blinkdagger.androidLab.Widget.SelectBarView
         android:id="@+id/main_bar"
         android:layout_width="match_parent"
         android:layout_height="36dp"
