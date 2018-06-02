@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.CrashHandle;
+package cn.blinkdagger.androidLab.Utils.CrashHandle;
 
 import android.content.Context;
 import android.os.Environment;

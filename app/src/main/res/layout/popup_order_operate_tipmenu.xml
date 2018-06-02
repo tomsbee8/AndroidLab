@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <cn.blinkdagger.androidLab.Widget.TipMenuView
+        android:id="@+id/tip_menu"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:tipMenuBorderRadius="3dp"
+        app:tipMenuBgColor="@color/common_c7"
+        app:tipMenuItemHeight="32dp"
+        app:tipMenuTextColor="@color/common_c1"
+        app:tipMenuTextSize="14sp"
+        app:tipMenuTrangleGravity="LeftBottom"
+        app:tipMenuTrangleHeight="8dp"
+        app:tipMenuTrangleBottomLength="12dp"
+        app:tipMenuTrangleMargin="41dp"
+        app:tipMenuSeparateLineHeight="0.5dp"
+        app:tipMenuSeparateLineColor="@color/common_c1"
+        />
+
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package cn.blinkdagger.androidLab.UI.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ import cn.blinkdagger.androidLab.UI.adapter.CategoryListAdapter;
 
 public class BindingListActivity extends BaseActivity {
 
-
     @BindView(R.id.binding_list_rv)
     RecyclerView bindingListRv;
 
@@ -36,18 +36,29 @@ public class BindingListActivity extends BaseActivity {
     }
 
     @Override
-    protected void initViewAndData() {
-        ButterKnife.bind(this);
+    protected boolean useToolbar() {
+        return true;
+    }
 
+    @Override
+    protected void initView() {
+        setToolbarTitle("DataBindingList");
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
         List<CategoryItem> hostList = new ArrayList<CategoryItem>() {{
             add(new CategoryItem("10", "测试环境", ""));
             add(new CategoryItem("12", "正式环境", ""));
             add(new CategoryItem("13", "自定义环境", ""));
         }};
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        bindingListRv.setLayoutManager(linearLayoutManager);
         adapter = new CategoryListAdapter(this);
         bindingListRv.setAdapter(adapter);
         adapter.getItems().addAll(hostList);
-
-
     }
+
 }

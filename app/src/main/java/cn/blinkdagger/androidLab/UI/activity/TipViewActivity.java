@@ -2,22 +2,24 @@ package cn.blinkdagger.androidLab.UI.activity;
 
 import cn.blinkdagger.androidLab.Base.BaseActivity;
 import cn.blinkdagger.androidLab.R;
+import cn.blinkdagger.androidLab.Widget.TipView;
 
 /**
  * 类描述：
  * 创建人：ls
- * 创建时间：2018/3/5
+ * 创建时间：2018/6/1
  * 修改人：
  * 修改时间：
- * 修改备注：
+ * 修改备注：扩展工作：横向，三角形圆角
  */
 
-public class DynamicBlurActivity extends BaseActivity{
+public class TipViewActivity extends BaseActivity {
 
+    private TipView tipView;
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_dynamic_blur;
+        return R.layout.activity_tip_view;
     }
 
     @Override
@@ -27,12 +29,11 @@ public class DynamicBlurActivity extends BaseActivity{
 
     @Override
     protected void initView() {
+        tipView =findViewById(R.id.tip_view);
     }
 
     @Override
     protected void initData() {
-        setToolbarTitle("DynamicBlur");
 
     }
-
 }

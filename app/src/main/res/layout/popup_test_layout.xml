@@ -5,21 +5,21 @@
     android:layout_height="match_parent">
 
 
-    <com.kaistart.kslogger.widget.TipView
-        android:layout_width="160dp"
+    <cn.blinkdagger.androidLab.Widget.TipView
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
         android:layout_marginTop="10dp"
-        app:TipBgColor="#345454"
-        app:TipBorderRadius="12dp"
-        app:TipRectHeight="24dp"
+        app:TipBgColor="@color/colorPrimary"
+        app:TipBorderRadius="0dp"
+        app:TipRectHeight="32dp"
         app:TipTextColor="@color/cardview_light_background"
-        app:TipTextContent="小开客服在此，有何指教"
+        app:TipTextContent="点击此处可以发现更多哦"
         app:TipTextSize="12sp"
-        app:trangleBottomLength="8dp"
+        app:trangleBottomLength="16dp"
         app:trangleGravity="RightTop"
-        app:trangleHeight="6dp"
-        app:trangleMargin="5dp" />
+        app:trangleHeight="10dp"
+        app:trangleMargin="20dp" />
 
 
 </LinearLayout>

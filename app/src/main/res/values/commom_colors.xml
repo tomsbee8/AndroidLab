@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2c2c2c</color>
+    <color name="colorPrimaryDark">#2d2d2d</color>
+    <color name="colorAccent">#5cb975</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="main_color">#333333</color>
+
+
+    <color name="common_c1">#ffffff</color>
+    <color name="common_c2">#333333</color>
+    <color name="common_c3">#666666</color>
+    <color name="common_c4">#999999</color>
+    <color name="common_c5">#f7f7f7</color>
+    <color name="common_c6">#e1e1e1</color>
+    <color name="common_c7">#5cb975</color>
+    <color name="common_c8">#b2333333</color>
+
+    <color name="common_c9">#fe8b8b</color>
+    <color name="common_c10">#f85b5b</color>
+    <color name="common_c11">#ffc353</color>
+    <color name="common_c12">#619cd8</color>
+    <color name="common_c13">#bde2c3</color>
+    <color name="common_c14">#779f76</color>
+    <color name="common_c15">#c5c5c5</color>
+
+    <color name="common_color_f2">#f2f2f2</color>
+
+    <color name="common_a7b1bd">#A7B1BD</color>
+    <color name="common_f0f0f0">#F0F0F0</color>
+
+    <color name="common_66c1">#66ffffff</color>
+    <color name="common_d8">#d8d8d8</color>
+
+</resources>

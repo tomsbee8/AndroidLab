@@ -17,19 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UI.activity.MainActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".UI.activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_splash"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".UI.activity.MainActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".UI.activity.CollapsingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -39,8 +38,17 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".UI.activity.DrawerActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".UI.activity.CustomPopupWindowActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".UI.activity.TipMenuViewActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".UI.activity.TipViewActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".UI.activity.SelectBarViewActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".UI.activity.BindingListActivity"
             android:theme="@style/AppTheme"/>
+
     </application>
 
 </manifest>

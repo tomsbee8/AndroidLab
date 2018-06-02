@@ -46,6 +46,27 @@
         </attr>
     </declare-styleable>
 
+    <!--TipMenuView-->
+    <declare-styleable name="TipMenuView" tools:ignore="ResourceName">
+        <attr name="tipMenuBgColor" format="color" />
+        <attr name="tipMenuTextColor" format="color" />
+        <attr name="tipMenuTextSize" format="dimension" />
+        <attr name="tipMenuItemHeight" format="dimension" />
+        <attr name="tipMenuItemPressedColor" format="color" />
+        <attr name="tipMenuSeparateLineHeight" format="dimension" />
+        <attr name="tipMenuSeparateLineColor" format="color" />
+        <attr name="tipMenuBorderRadius" format="dimension" />
+        <attr name="tipMenuTrangleHeight" format="dimension" />
+        <attr name="tipMenuTrangleBottomLength" format="dimension" />
+        <attr name="tipMenuTrangleMargin" format="dimension" />
+        <attr name="tipMenuTrangleGravity">
+            <enum name="LeftTop" value="1" />
+            <enum name="LeftBottom" value="2" />
+            <enum name="RightTop" value="3" />
+            <enum name="RightBottom" value="4" />
+        </attr>
+    </declare-styleable>
+
     <!--TimeLineView-->
     <declare-styleable name="TimeLineItemView" >
         <attr name="dot_radius" format="dimension"/>

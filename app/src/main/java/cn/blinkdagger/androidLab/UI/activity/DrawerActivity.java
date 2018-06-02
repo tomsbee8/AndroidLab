@@ -18,16 +18,12 @@ import butterknife.BindView;
 
 public class DrawerActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
-    @BindView(R.id.fl_main)
-    FrameLayout flMain;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.list_view_menu)
     ListView listViewMenu;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-    @BindView(R.id.toolbar_center_tv)
-    TextView toolbarCenterTV;
 
     DrawerFragment fragment;
     public static final int DISPLAY_SPRING_IMAGE =1;
@@ -41,37 +37,31 @@ public class DrawerActivity extends BaseActivity implements AdapterView.OnItemCl
     }
 
     @Override
-    protected void initViewAndData() {
-        initToolBar();
+    protected boolean useToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
         listViewMenu.setOnItemClickListener(this);
         fragment =new DrawerFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(R.id.fl_main, fragment).commit();
-
-        SystemBarUtil.setTranslucentStatusBar(this,true);
-//        SystemBarUtil.setStatusBarColor(this,Color.parseColor("#000000"),true);
-
     }
 
-    private void initToolBar (){
-        // 设置返回按钮点击事件
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(drawerLayout.isDrawerVisible(listViewMenu)){
-                    drawerLayout.openDrawer(listViewMenu);
-                }else{
-                    drawerLayout.closeDrawer(listViewMenu);
-                }
-            }
-        });
-        setSupportActionBar(mToolbar);
-        // 设置隐藏标题
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        // 设置显示返回按钮
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+    @Override
+    protected void onNavigationIconClick() {
+        if(drawerLayout.isDrawerVisible(listViewMenu)){
+            drawerLayout.openDrawer(listViewMenu);
+        }else{
+            drawerLayout.closeDrawer(listViewMenu);
+        }
     }
 
     @Override

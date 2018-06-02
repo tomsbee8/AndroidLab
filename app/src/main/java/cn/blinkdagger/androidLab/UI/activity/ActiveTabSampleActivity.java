@@ -37,33 +37,39 @@ public class ActiveTabSampleActivity extends BaseActivity {
     }
 
     @Override
-    protected void initViewAndData() {
+    protected boolean useToolbar() {
+        return false;
+    }
+
+    @Override
+    protected void initView() {
         tabIV = findViewById(R.id.tab_iv);
 
+    }
+
+    @Override
+    protected void initData() {
         final String imageUrl = "";
-            Observable<Drawable> drawableObservable = Observable.create(new ObservableOnSubscribe<Drawable>() {
-                @Override
-                public void subscribe(ObservableEmitter<Drawable> e) throws Exception {
-                    RequestOptions options = new RequestOptions()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL);
-                   Glide.with(ActiveTabSampleActivity.this)
-                            .load(imageUrl)
-                            .listener(new RequestListener<Drawable>() {
-                                @Override
-                                public boolean onLoadFailed(@android.support.annotation.Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                                    return false;
-                                }
+        Observable<Drawable> drawableObservable = Observable.create(new ObservableOnSubscribe<Drawable>() {
+            @Override
+            public void subscribe(ObservableEmitter<Drawable> e) throws Exception {
+                RequestOptions options = new RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL);
+                Glide.with(ActiveTabSampleActivity.this)
+                        .load(imageUrl)
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@android.support.annotation.Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
 
-                                @Override
-                                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                    return false;
-                                }
-                            }).submit();
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                return false;
+                            }
+                        }).submit();
 
-                }
-            });
-
-
-
+            }
+        });
     }
 }

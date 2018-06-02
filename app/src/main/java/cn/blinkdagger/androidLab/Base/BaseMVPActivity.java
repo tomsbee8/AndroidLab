@@ -9,7 +9,12 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * Created by d on 2016/11/16.
+ * 类描述：基本视图
+ * 创建人：ls
+ * 创建时间：2016/11/22
+ * 修改人：
+ * 修改时间：
+ * 修改备注：
  */
 
 public abstract class BaseMVPActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {

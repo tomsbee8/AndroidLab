@@ -1,68 +1,82 @@
 package cn.blinkdagger.androidLab.UI.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.blinkdagger.androidLab.Base.BaseActivity;
+import cn.blinkdagger.androidLab.Entity.MainItem;
 import cn.blinkdagger.androidLab.R;
-import cn.blinkdagger.androidLab.Utils.SystemBarUtil;
-import cn.blinkdagger.androidLab.Widget.CustomPopupWindow;
-import cn.blinkdagger.androidLab.Widget.SelectBarView;
+import cn.blinkdagger.androidLab.UI.adapter.MainAdapter;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private SelectBarView barView;
-    private TextView clickTv;
-    private TextView scrollTv;
+public class MainActivity extends BaseActivity implements MainAdapter.OnMainItemClickListener{
+
+    private RecyclerView mainRV;
+    private List<MainItem> mainItemList;
+    private MainAdapter mainAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        barView = findViewById(R.id.main_bar);
-        clickTv = findViewById(R.id.click_tv);
-        clickTv = findViewById(R.id.click_tv);
-        scrollTv = findViewById(R.id.scroll_tv);
-
-        barView.setItemGroup("群聊", "品论", "通知");
-        barView.setOnItemCheckedChangeListener(new SelectBarView.OnItemCheckedChangeListener() {
-            @Override
-            public void onItemClick(int index) {
-                if (index == 1) {
-                    Intent intent = new Intent(MainActivity.this, cn.blinkdagger.androidLab.UI.activity.ImmersiveModeActivity.class);
-                    startActivity(intent);
-                }else if(index == 2){
-                    Intent intent = new Intent(MainActivity.this, cn.blinkdagger.androidLab.UI.activity.DrawerActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-        clickTv.setOnClickListener(this);
-        scrollTv.setOnClickListener(this);
-
-        SystemBarUtil.setTranslucentStatusBar(this,true);
+    protected int getLayout() {
+        return R.layout.activity_main;
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.click_tv:
-                new CustomPopupWindow.Builder(this)
-                        .setContentView(R.layout.popup_test_layout)
-                        .setFocusable(true)
-                        .setOnKeyBackDissmiss(true)
-                        .setOnOutsideTouchDissmiss(false)
-                        .setOnShowBgAlpha(0.5f)
-                        .setOnShowChangeBg(false)
-                        .build()
-                        .showAsDropDown(clickTv);
+    protected boolean useToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView() {
+        mainRV =findViewById(R.id.main_rv);
+    }
+
+    @Override
+    protected void initData() {
+        setNavigationIconInvisiable();
+        setToolbarTitle("AndroidLab");
+
+        mainItemList =new ArrayList<MainItem>(){{
+            add(new MainItem(1,"SelectBarView"));
+            add(new MainItem(1,"TipView"));
+            add(new MainItem(1,"TipViewmenu"));
+            add(new MainItem(1,"CustomPopup"));
+            add(new MainItem(1,"CollaspingTab"));
+            add(new MainItem(1,"DataBinding"));
+            add(new MainItem(1,"DynamicBlur"));
+        }};
+        GridLayoutManager gridLayoutManager =new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
+        mainRV.setLayoutManager(gridLayoutManager);
+        mainAdapter =new MainAdapter(this,mainItemList);
+        mainAdapter.setOnItemClickListener(this);
+        mainRV.setAdapter(mainAdapter);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        switch (position){
+            case 0:
+                startActivity(new Intent(this,SelectBarViewActivity.class));
                 break;
-            case R.id.scroll_tv:
-                Intent intent = new Intent(this, cn.blinkdagger.androidLab.UI.activity.CollapsingActivity.class);
-                startActivity(intent);
+            case 1:
+                startActivity(new Intent(this,TipViewActivity.class));
                 break;
-            default:
+            case 2:
+                startActivity(new Intent(this,TipMenuViewActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(this,CustomPopupWindowActivity.class));
+                break;
+            case 4:
+                startActivity(new Intent(this,CollapsingActivity.class));
+                break;
+            case 5:
+                startActivity(new Intent(this,BindingListActivity.class));
+                break;
+            case 6:
+                startActivity(new Intent(this,DynamicBlurActivity.class));
                 break;
         }
     }
