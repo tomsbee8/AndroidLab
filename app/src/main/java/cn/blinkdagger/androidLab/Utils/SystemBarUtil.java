@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -115,6 +116,7 @@ public class SystemBarUtil {
      * @return
      */
     public static void setStatusBarColor(@NonNull Activity activity, @ColorInt int color, boolean useLightStatusBar) {
+        Context c =activity.getBaseContext();
         int uiOptions = activity.getWindow().getDecorView().getSystemUiVisibility();
         uiOptions &= ~View.SYSTEM_UI_FLAG_LOW_PROFILE;
         uiOptions |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
@@ -159,6 +161,18 @@ public class SystemBarUtil {
 
         // 设状态栏字体颜色
         setLightStatusBar(activity,useLightStatusBar,color);
+    }
+
+    /**
+     * 设置状态栏的颜色
+     *
+     * @param v4Fragment        当前Fragment
+     * @param color             颜色
+     * @param useLightStatusBar 是否启用LightStatusBar【状态栏字体动态变色】
+     * @return
+     */
+    public static void setStatusBarColor(@NonNull Fragment v4Fragment, @ColorInt int color, boolean useLightStatusBar) {
+        setStatusBarColor(v4Fragment.getActivity(),color,useLightStatusBar);
     }
 
 
