@@ -1,10 +1,9 @@
 package cn.blinkdagger.androidLab.UI.adapter;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
 
 import cn.blinkdagger.androidLab.Base.BaseBindingAdapter;
-import cn.blinkdagger.androidLab.Entity.CategoryItem;
+import cn.blinkdagger.androidLab.entity.CategoryItem;
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.databinding.ItemCategoryListBinding;
 

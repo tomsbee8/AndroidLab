@@ -6,12 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import cn.blinkdagger.androidLab.Entity.MainItem;
+import cn.blinkdagger.androidLab.entity.MainItem;
 import cn.blinkdagger.androidLab.R;
 
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

@@ -2,6 +2,7 @@ package cn.blinkdagger.androidLab.Base;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.subscriptions.ArrayCompositeSubscription;
 
 /**
  * 类描述：控制订阅的生命周期

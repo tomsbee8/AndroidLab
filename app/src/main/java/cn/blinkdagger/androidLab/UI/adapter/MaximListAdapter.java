@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import cn.blinkdagger.androidLab.Entity.RemarkItem;
+import cn.blinkdagger.androidLab.entity.RemarkItem;
 import cn.blinkdagger.androidLab.R;
 
 import java.util.List;

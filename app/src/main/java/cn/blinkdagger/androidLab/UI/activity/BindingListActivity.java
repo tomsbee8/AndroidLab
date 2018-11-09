@@ -1,6 +1,5 @@
 package cn.blinkdagger.androidLab.UI.activity;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -10,7 +9,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.blinkdagger.androidLab.Base.BaseActivity;
-import cn.blinkdagger.androidLab.Entity.CategoryItem;
+import cn.blinkdagger.androidLab.entity.CategoryItem;
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.UI.adapter.CategoryListAdapter;
 

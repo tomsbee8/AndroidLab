@@ -4,7 +4,7 @@
 
         <variable
             name="viewModel"
-            type="cn.blinkdagger.androidLab.Entity.CategoryItem" />
+            type="cn.blinkdagger.androidLab.entity.CategoryItem" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

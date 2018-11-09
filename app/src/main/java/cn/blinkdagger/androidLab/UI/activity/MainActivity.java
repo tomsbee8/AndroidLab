@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.blinkdagger.androidLab.Base.BaseActivity;
-import cn.blinkdagger.androidLab.Entity.MainItem;
+import cn.blinkdagger.androidLab.entity.MainItem;
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.UI.adapter.MainAdapter;
 
@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
             add(new MainItem(1,"CollaspingTab"));
             add(new MainItem(1,"DataBinding"));
             add(new MainItem(1,"DynamicBlur"));
+            add(new MainItem(1,"HorizontalStepView"));
         }};
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
         mainRV.setLayoutManager(gridLayoutManager);
@@ -77,6 +78,9 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
                 break;
             case 6:
                 startActivity(new Intent(this,DynamicBlurActivity.class));
+                break;
+            case 7:
+                startActivity(new Intent(this,StepViewActivity.class));
                 break;
         }
     }

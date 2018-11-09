@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.Entity;
+package cn.blinkdagger.androidLab.entity;
 
 /**
  * 类描述：

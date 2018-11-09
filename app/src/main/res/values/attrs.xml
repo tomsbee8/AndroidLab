@@ -10,7 +10,7 @@
     </declare-styleable>
 
 
-    <declare-styleable name="SelectBarView">
+    <declare-styleable name="SelectBarView" tools:ignore="ResourceName">
         <!--声明我们的属性，名称为default_size,取值类型为尺寸类型（dp,px等）-->
         <attr name="borderColor" format="color" />
         <attr name="borderWidth" format="dimension" />
@@ -68,7 +68,7 @@
     </declare-styleable>
 
     <!--TimeLineView-->
-    <declare-styleable name="TimeLineItemView" >
+    <declare-styleable name="TimeLineItemView" tools:ignore="ResourceName">
         <attr name="dot_radius" format="dimension"/>
         <attr name="dot_color" format="color"/>
         <attr name="line_color" format="color"/>
@@ -78,7 +78,7 @@
     </declare-styleable>
 
     <!--  圆形扩散图 -->
-    <declare-styleable name="DiffuseView">
+    <declare-styleable name="DiffuseView" tools:ignore="ResourceName">
         <attr name="diffuse_color"  format="color"/>
         <attr name="diffuse_coreColor" format="color"/>
         <attr name="diffuse_coreImage" format="reference"/>
@@ -88,7 +88,7 @@
     </declare-styleable>
 
     <!--  波纹扩散图 -->
-    <declare-styleable name="RippleDiffuseView">
+    <declare-styleable name="RippleDiffuseView" tools:ignore="ResourceName">
         <attr name="color"  format="color"/>
         <attr name="imageSrc" format="reference"/>
         <attr name="imageWidth" format="dimension"/>
@@ -98,5 +98,23 @@
         <attr name="maxCircleCount" format="integer" />
         <attr name="strokeWidth" format="dimension"/>
     </declare-styleable>
+
+    <!-- 水平StepView -->
+    <declare-styleable name="HorizontalStepView" tools:ignore="ResourceName">
+        <attr name="selectedTextSize"  format="dimension"/>
+        <attr name="selectedTextColor"  format="color"/>
+        <attr name="normalTextSize" format="dimension"/>
+        <attr name="normalTextColor" format="color"/>
+        <attr name="activedDotColor" format="color" />
+        <attr name="activedDotRadius" format="dimension" />
+        <attr name="normalDotRadius" format="dimension" />
+        <attr name="normalDotColor" format="color" />
+        <attr name="dotImage" format="reference"/>
+        <attr name="lineColor" format="color"/>
+        <attr name="activatedLineColor" format="color"/>
+        <attr name="lineHeight" format="dimension"/>
+        <attr name="itemWidth" format="dimension"/>
+    </declare-styleable>
+
 
 </resources>
