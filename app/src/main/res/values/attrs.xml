@@ -102,11 +102,12 @@
     <!-- 水平StepView -->
     <declare-styleable name="HorizontalStepView" tools:ignore="ResourceName">
         <attr name="selectedTextSize"  format="dimension"/>
-        <attr name="selectedTextColor"  format="color"/>
+        <attr name="activedTextColor"  format="color"/>
         <attr name="normalTextSize" format="dimension"/>
         <attr name="normalTextColor" format="color"/>
         <attr name="activedDotColor" format="color" />
         <attr name="activedDotRadius" format="dimension" />
+        <attr name="currentDotRadius" format="dimension" />
         <attr name="normalDotRadius" format="dimension" />
         <attr name="normalDotColor" format="color" />
         <attr name="dotImage" format="reference"/>
@@ -114,6 +115,8 @@
         <attr name="activatedLineColor" format="color"/>
         <attr name="lineHeight" format="dimension"/>
         <attr name="itemWidth" format="dimension"/>
+        <attr name="shadowColor" format="color"/>
+        <attr name="shadowWidth" format="dimension"/>
     </declare-styleable>
 
 

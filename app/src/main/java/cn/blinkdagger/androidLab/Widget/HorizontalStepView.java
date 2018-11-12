@@ -15,14 +15,12 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Scroller;
 
 import java.util.List;
 
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.Utils.DensityUtil;
-import cn.blinkdagger.androidLab.Utils.DeviceUtil;
-import cn.blinkdagger.androidLab.Utils.ScreenUtil;
 
 /**
  * @Author ls
@@ -32,22 +30,25 @@ import cn.blinkdagger.androidLab.Utils.ScreenUtil;
  */
 public class HorizontalStepView extends View {
 
-    private List<CharSequence> stepTextList;// Step 数据列表
+    private List<String> stepTextList;// Step 数据列表
 
     // 点的选中状态影响文字样式
     private int selectedPosition;          // 选中的点的位置
     private float selectedTextSize;         // 选中的文字的大小
-    private int selectedTextColor;         // 选中的文字的颜色
     private float textSize;                  // 未选中的文字的大小
-    private int textColor;                 // 未选中的文字的颜色
+    private int textColor;                 // 未激活的文字的颜色
+    private int activitedTextColor;        // 激活的文字的颜色
 
     // 点的激活状态影响圆点View的样式
     private int activedPosition;           // 激活的圆点的位置
     private int activedDotColor;           // 激活的圆点的背景颜色
     private float activedDotRadius;          // 激活的圆点的半径
+    private float cureentDotRadius;        // 激活的最后的圆点的半径
     private float dotRadius;                 // 未激活的圆点的半径
     private int dotColor;                  // 未激活的圆点的背景颜色
     private Bitmap dotBitmap;                  // 未激活的圆点的背景
+    private int shadowColor;                  // 圆点背景颜色
+    private float shadowWidth;                // 圆点背景宽度
 
     private int lineColor;                 // 线条颜色
     private int activitedLineColor;          // 线条颜色
@@ -56,7 +57,10 @@ public class HorizontalStepView extends View {
 
     private Paint mPaint;
     private RectF mRecfF;
-    
+
+    private Scroller scroller;
+    private int currentX = 0;
+
 
     public HorizontalStepView(Context context) {
         super(context);
@@ -82,17 +86,20 @@ public class HorizontalStepView extends View {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HorizontalStepView);
         selectedTextSize = a.getDimension(R.styleable.HorizontalStepView_selectedTextSize, DensityUtil.dp2px(context, 12));
-        selectedTextColor = a.getColor(R.styleable.HorizontalStepView_selectedTextColor, Color.parseColor("#333333"));
+        activitedTextColor = a.getColor(R.styleable.HorizontalStepView_activedTextColor, Color.parseColor("#333333"));
         textSize = a.getDimension(R.styleable.HorizontalStepView_normalTextSize, DensityUtil.dp2px(context, 12));
         textColor = a.getColor(R.styleable.HorizontalStepView_normalTextColor, Color.parseColor("#666666"));
         activedDotColor = a.getColor(R.styleable.HorizontalStepView_activedDotColor, Color.parseColor("#000000"));
-        activedDotRadius = a.getDimension(R.styleable.HorizontalStepView_activedDotRadius, DensityUtil.dp2px(context, 6));
+        activedDotRadius = a.getDimension(R.styleable.HorizontalStepView_activedDotRadius, DensityUtil.dp2px(context, 3));
+        cureentDotRadius = a.getDimension(R.styleable.HorizontalStepView_currentDotRadius, DensityUtil.dp2px(context, 3));
         dotRadius = a.getDimension(R.styleable.HorizontalStepView_normalDotRadius, DensityUtil.dp2px(context, 4));
         dotColor = a.getColor(R.styleable.HorizontalStepView_normalDotColor, Color.parseColor("#000000"));
         lineColor = a.getColor(R.styleable.HorizontalStepView_lineColor, Color.parseColor("#F1F1F1"));
         activitedLineColor = a.getColor(R.styleable.HorizontalStepView_activatedLineColor, Color.parseColor("#666666"));
         lineHeight = a.getDimension(R.styleable.HorizontalStepView_lineHeight, DensityUtil.dp2px(context, 2));
         itemWidth = a.getDimension(R.styleable.HorizontalStepView_itemWidth, DensityUtil.dp2px(context, 100));
+        shadowColor = a.getColor(R.styleable.HorizontalStepView_shadowColor, Color.parseColor("#666666"));
+        shadowWidth = a.getDimension(R.styleable.HorizontalStepView_shadowWidth, DensityUtil.dp2px(context, 0));
         int dotImageResId = a.getResourceId(R.styleable.HorizontalStepView_dotImage, -1);
 
         if (dotImageResId != -1) {
@@ -100,10 +107,32 @@ public class HorizontalStepView extends View {
         }
         a.recycle();
 
+        mPaint = new Paint();
+        scroller = new Scroller(context);
+
     }
 
-    public void setStepTextList(List<CharSequence> stepTextList) {
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = 0;
+
+        if (heightMode == MeasureSpec.EXACTLY) {
+            heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        } else if (heightMode == MeasureSpec.AT_MOST) {
+            float maxDotHeight = Math.max(Math.max(activedDotRadius, dotRadius), cureentDotRadius) * 2 + shadowWidth * 2;
+            int minHeight = (int) (getFontHeight(Math.max(selectedTextSize, textSize)) + maxDotHeight);
+            heightSize = Math.min(MeasureSpec.getSize(heightMeasureSpec), minHeight);
+        }
+
+        setMeasuredDimension(widthSize, heightSize);
+    }
+
+    public void setStepTextList(List<String> stepTextList) {
         this.stepTextList = stepTextList;
+        requestLayout();
         invalidate();
     }
 
@@ -114,8 +143,10 @@ public class HorizontalStepView extends View {
      * @param activedPosition
      */
     public void setActivedPosition(int activedPosition) {
-        this.activedPosition = activedPosition;
-        invalidate();
+        if (activedPosition > 0 && activedPosition < stepTextList.size()) {
+            this.activedPosition = activedPosition;
+            invalidate();
+        }
     }
 
     /**
@@ -124,22 +155,12 @@ public class HorizontalStepView extends View {
      * @param selectedPosition
      */
     public void setSelectedPosition(int selectedPosition) {
-        this.selectedPosition = selectedPosition;
+        if (selectedPosition > 0 && selectedPosition < stepTextList.size()) {
+            this.selectedPosition = selectedPosition;
+            scrollTo(selectedPosition);
+        }
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-
-        
-        setMeasuredDimension(width, height);
-
-    }
 
     @SuppressLint("DrawAllocation")
     @Override
@@ -148,44 +169,112 @@ public class HorizontalStepView extends View {
         if (stepTextList != null && !stepTextList.isEmpty()) {
 
             int halfWidth = getWidth() / 2;
-            float dotViewHeight = Math.max(activedDotRadius, dotRadius);
+
+            float dotViewHeight = Math.max(Math.max(activedDotRadius, dotRadius), cureentDotRadius) + shadowWidth;
+            // 绘制圆点的背景
+            if (shadowWidth > 0) {
+                for (int index = 0; index < stepTextList.size(); index++) {
+                    mPaint.setStyle(Paint.Style.FILL);
+                    mPaint.setColor(shadowColor);
+                    if (index < activedPosition) {
+                        canvas.drawCircle(halfWidth + itemWidth * index, dotViewHeight, activedDotRadius+shadowWidth, mPaint);
+                    } else if (index == activedPosition) {
+                        canvas.drawCircle(halfWidth + itemWidth * index, dotViewHeight, cureentDotRadius +shadowWidth, mPaint);
+                    }
+                }
+            }
 
             // 绘制背景线条
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(lineColor);
-            canvas.drawRect(halfWidth, dotViewHeight - lineHeight / 2, getMeasuredWidth() - halfWidth, dotViewHeight - lineHeight / 2, mPaint);
+            float bgWidth = halfWidth + itemWidth * (stepTextList.size() - 1);
+            canvas.drawRect(halfWidth, dotViewHeight - lineHeight / 2, bgWidth, dotViewHeight + lineHeight / 2, mPaint);
 
             // 绘制激活的线条
             mRecfF = new RectF(halfWidth - lineHeight / 2, dotViewHeight - lineHeight / 2,
-                    getMeasuredWidth() - halfWidth + lineHeight / 2, dotViewHeight - lineHeight / 2);
+                    halfWidth + itemWidth * activedPosition + itemWidth / 2 + lineHeight / 2, dotViewHeight + lineHeight / 2);
             mPaint.setColor(activitedLineColor);
             canvas.drawRoundRect(mRecfF, lineHeight / 2, lineHeight / 2, mPaint);
 
             // 绘制Dot
-            for (int index = 0; index < stepTextList.size() - 1; index++) {
-                if (index <= activedPosition) {
+            for (int index = 0; index < stepTextList.size(); index++) {
+                if (index < activedPosition) {
                     mPaint.setColor(activedDotColor);
                     canvas.drawCircle(halfWidth + itemWidth * index, dotViewHeight, activedDotRadius, mPaint);
+                } else if (index == activedPosition) {
+                    mPaint.setColor(activedDotColor);
+                    canvas.drawCircle(halfWidth + itemWidth * index, dotViewHeight, cureentDotRadius, mPaint);
                 } else {
                     mPaint.setColor(dotColor);
                     canvas.drawCircle(halfWidth + itemWidth * index, dotViewHeight, dotRadius, mPaint);
-                    float rectfWidth = (float) Math.sqrt(2) / 2 * dotRadius;
+                    float rectfWidth = (float) dotRadius / 2;
                     RectF mRecfF = new RectF(halfWidth + itemWidth * index - rectfWidth, dotViewHeight - rectfWidth,
                             halfWidth + itemWidth * index + rectfWidth, dotViewHeight + rectfWidth);
-                    Rect rect = new Rect(0,0,dotBitmap.getWidth(),dotBitmap.getHeight());
-                    canvas.drawBitmap(dotBitmap, rect, mRecfF,mPaint);
+                    if (dotBitmap != null && !dotBitmap.isRecycled()) {
+                        Rect rect = new Rect(0, 0, dotBitmap.getWidth(), dotBitmap.getHeight());
+                        canvas.drawBitmap(dotBitmap, rect, mRecfF, mPaint);
+                    }
 
                 }
             }
 
             // 绘制文字
+            for (int i = 0; i < stepTextList.size(); i++) {
+                mPaint.setAntiAlias(true);
+                mPaint.setTextAlign(Paint.Align.CENTER);
+                if (i == selectedPosition) {
+                    mPaint.setTextSize(selectedTextSize);
+                } else {
+                    mPaint.setTextSize(textSize);
+                }
+                if (i <= activedPosition) {
+                    mPaint.setColor(activitedTextColor);
+                } else {
+                    mPaint.setColor(textColor);
+                }
+                Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
+                float baseline = (getFontHeight(Math.max(selectedTextSize, textSize)) - fontMetrics.bottom - fontMetrics.top) / 2 + dotViewHeight * 2;
+                canvas.drawText(stepTextList.get(i), itemWidth * i + halfWidth, baseline, mPaint);
+            }
         }
         super.onDraw(canvas);
+    }
+
+
+    public void scrollTo(int position) {
+
+        if (position >= 0 && position < stepTextList.size()) {
+
+            if (position != selectedPosition) {
+                float scrollDistance = (position - selectedPosition) * itemWidth;
+                int scrollInt = (int) scrollDistance;
+
+                scroller.startScroll(currentX, 0, scrollInt, 0);
+                selectedPosition = position;
+                currentX += scrollDistance;
+                invalidate();//进行下段位移
+            }
+        }
     }
 
 
     @Override
     public void computeScroll() {
         super.computeScroll();
+        if (scroller != null) {
+            if (scroller.computeScrollOffset()) {//判断scroll是否完成
+                scrollTo(scroller.getCurrX(), scroller.getCurrY());//执行本段位移
+
+                invalidate();//进行下段位移
+            }
+        }
+    }
+
+
+    public float getFontHeight(float fontSize) {
+        Paint paint = new Paint();
+        paint.setTextSize(fontSize);
+        Paint.FontMetrics fm = paint.getFontMetrics();
+        return (float) Math.ceil(fm.descent - fm.ascent);
     }
 }
