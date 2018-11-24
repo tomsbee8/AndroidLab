@@ -3,7 +3,6 @@
     <style name="AppTheme.Main" parent="AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:statusBarColor">@android:color/holo_red_dark</item>
     </style>
 
     <style name="AppCardView" parent="@style/CardView.Light">

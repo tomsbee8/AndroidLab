@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <cn.blinkdagger.androidLab.Widget.TipMenuView
+    <cn.blinkdagger.androidLab.widget.TipMenuView
         android:id="@+id/tip_menu"
         android:layout_width="100dp"
         android:layout_height="wrap_content"

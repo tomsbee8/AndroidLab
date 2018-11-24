@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="cn.blinkdagger.androidLab.UI.activity.SplashActivity">
+    tools:context="cn.blinkdagger.androidLab.ui.activity.SplashActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

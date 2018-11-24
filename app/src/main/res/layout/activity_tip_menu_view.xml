@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="cn.blinkdagger.androidLab.UI.activity.TipMenuViewActivity">
+    tools:context="cn.blinkdagger.androidLab.ui.activity.TipMenuViewActivity">
     
     
-    <cn.blinkdagger.androidLab.Widget.TipMenuView
+    <cn.blinkdagger.androidLab.widget.TipMenuView
         android:id="@+id/tip_menu_view"
         android:layout_width="100dp"
         android:layout_height="wrap_content"

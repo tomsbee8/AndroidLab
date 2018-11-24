@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UI.activity.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -26,29 +26,31 @@
         </activity>
 
         <activity
-            android:name=".UI.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".UI.activity.CollapsingActivity"
+            android:name=".ui.activity.CollapsingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UI.activity.NestedScrollActivity" />
+        <activity android:name=".ui.activity.NestedScrollActivity" />
         <activity
-            android:name=".UI.activity.ImmersiveModeActivity"
+            android:name=".ui.activity.ImmersiveModeActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".UI.activity.DrawerActivity"
+        <activity android:name=".ui.activity.DrawerActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".UI.activity.CustomPopupWindowActivity"
+        <activity android:name=".ui.activity.CustomPopupWindowActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".UI.activity.TipMenuViewActivity"
+        <activity android:name=".ui.activity.TipMenuViewActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".UI.activity.TipViewActivity"
+        <activity android:name=".ui.activity.TipViewActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".UI.activity.SelectBarViewActivity"
+        <activity android:name=".ui.activity.SelectBarViewActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".UI.activity.BindingListActivity"
+        <activity android:name=".ui.activity.BindingListActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".UI.activity.StepViewActivity"
+        <activity android:name=".ui.activity.StepViewActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.activity.CoordinateActivity"
+            android:theme="@style/AppTheme.Main"/>
 
     </application>
 

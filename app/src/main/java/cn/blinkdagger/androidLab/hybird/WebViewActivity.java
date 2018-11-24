@@ -15,7 +15,7 @@ import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-import cn.blinkdagger.androidLab.Base.BaseActivity;
+import cn.blinkdagger.androidLab.base.BaseActivity;
 import cn.blinkdagger.androidLab.R;
 
 /**

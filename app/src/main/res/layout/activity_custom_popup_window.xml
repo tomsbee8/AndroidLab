@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cn.blinkdagger.androidLab.UI.activity.CustomPopupWindowActivity">
+    tools:context="cn.blinkdagger.androidLab.ui.activity.CustomPopupWindowActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
