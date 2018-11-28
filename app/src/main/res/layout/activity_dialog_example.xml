@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:background="@color/main_color_1"
+        android:gravity="center"
+        android:text="确认"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/confirm_cancel_tv"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/confirm_cancel_tv"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:background="@color/main_color_3"
+        android:gravity="center"
+        android:text="确认取消"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/confirm_tv"
+        app:layout_constraintRight_toLeftOf="@+id/confirm_input_tv" />
+
+    <TextView
+        android:id="@+id/confirm_input_tv"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:background="@color/main_color_2"
+        android:gravity="center"
+        android:text="输入"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/confirm_cancel_tv"
+        app:layout_constraintRight_toLeftOf="@+id/confirm_dismiss_tv" />
+
+    <TextView
+        android:id="@+id/confirm_dismiss_tv"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/main_color_4"
+        android:gravity="center"
+        android:text="自动消失"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/confirm_input_tv"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

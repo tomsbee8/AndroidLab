@@ -49,8 +49,8 @@
             android:theme="@style/AppTheme"/>
         <activity android:name=".ui.activity.StepViewActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.CoordinateActivity"
-            android:theme="@style/AppTheme.Main"/>
+        <activity android:name=".ui.activity.DialogExampleActivity"
+            android:theme="@style/AppTheme"/>
 
     </application>
 

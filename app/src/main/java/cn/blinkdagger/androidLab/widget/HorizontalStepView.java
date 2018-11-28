@@ -163,6 +163,7 @@ public class HorizontalStepView extends View {
             if (shadowWidth > 0) {
                 for (int index = 0; index < stepTextList.size(); index++) {
                     mPaint.setStyle(Paint.Style.FILL);
+                    mPaint.setAntiAlias(true);
                     mPaint.setColor(shadowColor);
                     if (index < activedPosition) {
                         canvas.drawCircle(halfWidth + itemWidth * index, dotViewHeight, activedDotRadius + shadowWidth, mPaint);
@@ -179,8 +180,13 @@ public class HorizontalStepView extends View {
             canvas.drawRect(halfWidth, dotViewHeight - lineHeight / 2, bgWidth, dotViewHeight + lineHeight / 2, mPaint);
 
             // 绘制激活的线条
-            mRecfF = new RectF(halfWidth - lineHeight / 2, dotViewHeight - lineHeight / 2,
-                    halfWidth + itemWidth * activedPosition + itemWidth / 2 + lineHeight / 2, dotViewHeight + lineHeight / 2);
+            if (activedPosition == stepTextList.size() - 1) {
+                mRecfF = new RectF(halfWidth - lineHeight / 2, dotViewHeight - lineHeight / 2,
+                        halfWidth + itemWidth * activedPosition + lineHeight / 2, dotViewHeight + lineHeight / 2);
+            } else {
+                mRecfF = new RectF(halfWidth - lineHeight / 2, dotViewHeight - lineHeight / 2,
+                        halfWidth + itemWidth * activedPosition + itemWidth / 2 + lineHeight / 2, dotViewHeight + lineHeight / 2);
+            }
             mPaint.setColor(activitedLineColor);
             canvas.drawRoundRect(mRecfF, lineHeight / 2, lineHeight / 2, mPaint);
 

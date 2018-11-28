@@ -5,7 +5,7 @@
     android:fadingEdge="none"
     android:scrollbars="none" >
 
-    <cn.dxy.idxyer.common.hybird.DxyWebView
+    <cn.blinkdagger.androidLab.hybird.CommonWebView
         android:id="@+id/dxy_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

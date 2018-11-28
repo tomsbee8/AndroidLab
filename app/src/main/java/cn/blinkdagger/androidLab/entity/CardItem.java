@@ -7,11 +7,12 @@ package cn.blinkdagger.androidLab.entity;
  * @Version
  */
 public class CardItem {
+    private String mTitle;
     private int mTextResource;
-    private int mTitleResource;
 
-    public CardItem(int title, int text) {
-        mTitleResource = title;
+
+    public CardItem(String title, int text) {
+        mTitle = title;
         mTextResource = text;
     }
 
@@ -19,7 +20,7 @@ public class CardItem {
         return mTextResource;
     }
 
-    public int getTitle() {
-        return mTitleResource;
+    public String getTitle() {
+        return mTitle;
     }
 }

@@ -1,4 +1,5 @@
 package cn.blinkdagger.androidLab.ui.adapter;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * @Author ls
  * @Date 2018/11/12
@@ -23,7 +25,7 @@ public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         mFragments = new ArrayList<>();
 
-        for(int i = 0; i< 5; i++){
+        for (int i = 0; i < 7; i++) {
             addCardFragment(new CardFragment());
         }
     }

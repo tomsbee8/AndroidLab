@@ -46,6 +46,8 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
             add(new MainItem(1,"CollaspingTab"));
             add(new MainItem(1,"DataBinding"));
             add(new MainItem(1,"DynamicBlur"));
+            add(new MainItem(1,"CommonDialog"));
+            add(new MainItem(1,"HorizontalStepView"));
             add(new MainItem(1,"HorizontalStepView"));
         }};
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
@@ -80,7 +82,13 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
                 startActivity(new Intent(this,DynamicBlurActivity.class));
                 break;
             case 7:
-                startActivity(new Intent(this,CoordinateActivity.class));
+                startActivity(new Intent(this,DialogExampleActivity.class));
+                break;
+            case 8:
+                startActivity(new Intent(this,StepViewActivity.class));
+                break;
+            case 9:
+                startActivity(new Intent(this,DialogExampleActivity.class));
                 break;
         }
     }

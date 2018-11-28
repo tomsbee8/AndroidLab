@@ -3,6 +3,7 @@ package cn.blinkdagger.androidLab.ui.adapter;
 import android.annotation.SuppressLint;
 import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,27 @@ public class ProxyAdapter extends RecyclerView.Adapter {
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         mAdapter.onAttachedToRecyclerView(recyclerView);
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            final GridLayoutManager.SpanSizeLookup spanSizeLookup = gridLayoutManager.getSpanSizeLookup();
+
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (position < mHeaderViews.size()) {
+                        return gridLayoutManager.getSpanCount();
+                    } else if (position - mHeaderViews.size() >= mAdapter.getItemCount()) {
+                        return gridLayoutManager.getSpanCount();
+                    }else {
+                        if (spanSizeLookup != null) {
+                            return spanSizeLookup.getSpanSize(position);
+                        }
+                    }
+                    return 1;
+                }
+            });
+        }
     }
 
     @Override
@@ -161,7 +183,7 @@ public class ProxyAdapter extends RecyclerView.Adapter {
 
     static class ViewTypeSpec {
         static final int TYPE_SHIFT = 30;
-        static final int TYPE_MASK  = 0x3 << TYPE_SHIFT;
+        static final int TYPE_MASK = 0x3 << TYPE_SHIFT;
 
         public static final int UNSPECIFIED = 0 << TYPE_SHIFT;
         public static final int HEADER = 1 << TYPE_SHIFT;
@@ -169,7 +191,8 @@ public class ProxyAdapter extends RecyclerView.Adapter {
 
         @IntDef({UNSPECIFIED, HEADER, FOOTER})
         @Retention(RetentionPolicy.SOURCE)
-        public @interface ViewTypeSpecMode {}
+        public @interface ViewTypeSpecMode {
+        }
 
         public static int makeItemViewTypeSpec(@IntRange(from = 0, to = (1 << TYPE_SHIFT) - 1) int value,
                                                @ViewTypeSpecMode int type) {
@@ -179,7 +202,6 @@ public class ProxyAdapter extends RecyclerView.Adapter {
         @SuppressLint("WrongConstant")
         @ViewTypeSpecMode
         public static int getType(int viewType) {
-            //noinspection ResourceType
             return viewType & TYPE_MASK;
         }
 

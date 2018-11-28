@@ -147,7 +147,7 @@ public class CustomPopupWindow extends PopupWindow {
             return this;
         }
 
-        public Builder setOnShowBgAlpha(@FloatRange(from = 0f, to = 1.0f) float onShowBgAlpha) {
+        public Builder setOnShowBgAlpha(@FloatRange(from = 0f, to = 255) float onShowBgAlpha) {
             this.onShowBgAlpha = onShowBgAlpha;
             return this;
         }

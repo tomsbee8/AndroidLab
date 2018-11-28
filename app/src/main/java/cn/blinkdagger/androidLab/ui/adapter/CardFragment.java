@@ -18,14 +18,14 @@ import cn.blinkdagger.androidLab.R;
  */
 public class CardFragment extends Fragment {
 
-    private static final int MAX_ELEVATION_FACTOR = 2;
+    private static final int MAX_ELEVATION_FACTOR = 4;
 
     private CardView mCardView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_adapter, container, false);
+        View view = inflater.inflate(R.layout.fragment_pager_card, container, false);
         mCardView = (CardView) view.findViewById(R.id.cardView);
         mCardView.setMaxCardElevation(mCardView.getCardElevation() * MAX_ELEVATION_FACTOR);
         return view;

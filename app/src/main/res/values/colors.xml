@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- 主题相关颜色值 -->
     <color name="main_color_1">#5d91b2</color>
     <color name="main_color_2">#fffdcd</color>
     <color name="main_color_3">#e1ba86</color>
     <color name="main_color_4">#b76369</color>
 
 
+    <!-- 基本颜色值 -->
+    <color name="white">#FcFcFc</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="green">#449c1d</color>
+    <color name="gray">#efebde</color>
+    <color name="blue">#3a5aad</color>
+    <color name="yellow">#ffe891</color>
+    <color name="transparent">#00000000</color>
+
+
+    <!-- 规范颜色值 -->
+    <color name="text_black">#000000</color>
+    <color name="text_title">#333333</color>
+    <color name="text_name">#787878</color>
+    <color name="text_content">#909090</color>
+    <color name="text_hint">#c5c5c5</color>
+    <color name="split_line">#f1f1f1</color>
+    <color name="main_bg">#f2f2f2</color>
+    <color name="text_white">#ffffff</color>
+
+
+    <!-- 其他颜色值 -->
+    <color name="color_333333">#333333</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_999999">#999999</color>
     <color name="color_f4f4f4">#F4F4F4</color>
     <color name="color_7c5dc7">#7c5dc7</color>
-
 
 
 </resources>

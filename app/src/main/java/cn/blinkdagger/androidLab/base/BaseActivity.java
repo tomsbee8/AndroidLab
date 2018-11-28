@@ -138,9 +138,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void setToolbarTitle(CharSequence charSequence) {
+        setToolbarTitle(charSequence,true);
+    }
+
+    protected void setToolbarTitle(CharSequence charSequence,boolean centerHorizontal) {
         if (mToolbar != null) {
             TextView titleTV = mToolbar.findViewById(R.id.common_center_tv);
-            titleTV.setText(charSequence);
+            if(centerHorizontal){
+                titleTV.setText(charSequence);
+            }else{
+                mToolbar.setTitle(charSequence);
+            }
         }
     }
 

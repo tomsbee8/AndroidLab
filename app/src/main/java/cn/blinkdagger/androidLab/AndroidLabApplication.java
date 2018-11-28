@@ -11,11 +11,16 @@ import com.orhanobut.logger.Logger;
 
 public class AndroidLabApplication extends Application {
 
+    protected static AndroidLabApplication mInstance;
+
+    public static AndroidLabApplication getInstance() {
+        return mInstance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        mInstance = this;
         //初始化日志系统
         LogLevel level = BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE;
         Logger.init("KaiStart")                 // default PRETTYLOGGER or use just init()
