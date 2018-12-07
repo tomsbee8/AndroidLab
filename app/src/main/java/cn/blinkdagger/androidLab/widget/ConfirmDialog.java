@@ -1,11 +1,11 @@
 package cn.blinkdagger.androidLab.widget;
 
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -17,13 +17,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 
 import cn.blinkdagger.androidLab.R;
+import cn.blinkdagger.androidLab.utils.ScreenUtil;
 
 /**
  * @Author ls
@@ -35,18 +36,28 @@ public class ConfirmDialog extends DialogFragment {
 
     private static final String TAG = "ConfirmDialog";
 
-    protected static final String KEY_TITLE = "key_title";                //对话框标题
-    protected static final String KEY_IMAGE_ICON = "key_image_id";        //对话框图标id
-    protected static final String KEY_MESSAGE = "key_message";            //对话框内容
-    protected static final String KEY_MESSAGE_TIPS = "key_message_tips";  //对话框描述
-    protected static final String KEY_BTN_TEXT = "c_right_btn_text";      //对话框【右边】按钮文字
-    protected static final String KEY_CARD_RADIUS = "c_right_btn_text";   //对话框【右边】按钮文字
+    protected static final String KEY_TITLE = "TITLE";                      //对话框标题
+    protected static final String KEY_IMAGE_ICON = "IMAGE_RES_ID";          //对话框图标Id
+    protected static final String KEY_MESSAGE = "MESSAGE";                  //对话框内容
+    protected static final String KEY_MESSAGE_TIPS = "MESSAGE_TIPS";        //对话框描述
+    protected static final String KEY_BTN_TEXT = "BUTTON_TEXT";             //对话框按钮文字
+    protected static final String KEY_BTN_TEXT_COLOR = "BUTTON_TEXT_COLOR"; //对话框按钮颜色
+    protected static final String KEY_CARD_RADIUS = "DIALOG_RADIUS";        //对话框圆角半径
+    protected static final String KEY_MARGIN_LEFT = "MARGIN_LEFT";          //对话框左边距[将覆盖宽度百分比设置]
+    protected static final String KEY_MARGIN_RIGHT = "MARGIN_RIGHT";        //对话框右边距[将覆盖宽度百分比设置]
+    protected static final String KEY_WIDTH_PERCENT = "WIDTH_PERCENT";      //对话框宽度百分比
+    protected static final String KEY_MATERIAL_STYLE = "MATERIAL_STYLE";    //对话框原生风格
 
     private View.OnClickListener onConfirmClickListener;
 
     private DialogInterface.OnCancelListener mOnCancelListener;
     private DialogInterface.OnDismissListener mOnDismissListener;
     private DialogInterface.OnShowListener mOnShowListener;
+
+    private int marginLeft;
+    private int marginRight;
+    private float dialogWidthPercent;
+
 
     @CallSuper
     @Override
@@ -56,12 +67,22 @@ public class ConfirmDialog extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //设置dialogfragment全屏
-        getDialog().getWindow().getDecorView().setPadding(0, 0, 0, 0); //消除边距
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            marginLeft = bundle.getInt(KEY_MARGIN_LEFT, 0);
+            marginRight = bundle.getInt(KEY_MARGIN_RIGHT, 0);
+            dialogWidthPercent = bundle.getFloat(KEY_WIDTH_PERCENT, 0.85f);
+        }
+        getDialog().getWindow().getDecorView().setPadding(marginLeft, 0, marginRight, 0); //消除边距
         WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;   //设置宽度充满屏幕
+
+        if (getActivity() != null && marginLeft == 0 && marginRight == 0) {
+            lp.width = (int) (ScreenUtil.getScreenWidth(getActivity()) * dialogWidthPercent);
+        } else {
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        }
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         getDialog().getWindow().setAttributes(lp);
         getDialog().getWindow().setGravity(Gravity.CENTER);
@@ -76,7 +97,7 @@ public class ConfirmDialog extends DialogFragment {
         TextView titleTV = view.findViewById(R.id.dialog_title_tv);
         TextView messageTV = view.findViewById(R.id.dialog_message_tv);
         TextView messageTipsTV = view.findViewById(R.id.dialog_message_tips_tv);
-        Button confirmBTN = view.findViewById(R.id.dialog_confirm_btn);
+        TextView confirmTV = view.findViewById(R.id.dialog_confirm_tv);
         ImageView contentIV = view.findViewById(R.id.dialog_content_iv);
         CardView cardView = view.findViewById(R.id.dialog_card_view);
 
@@ -88,9 +109,24 @@ public class ConfirmDialog extends DialogFragment {
         CharSequence message = bundle.getCharSequence(KEY_MESSAGE);
         CharSequence messageTips = bundle.getCharSequence(KEY_MESSAGE_TIPS);
         CharSequence btnText = bundle.getCharSequence(KEY_BTN_TEXT);
-        int imageIcon = bundle.getInt(KEY_IMAGE_ICON);
+        Boolean materialStyle = bundle.getBoolean(KEY_MATERIAL_STYLE);
+        int imageIcon = bundle.getInt(KEY_IMAGE_ICON, 0);
+        int btnTextColor = bundle.getInt(KEY_BTN_TEXT_COLOR);
         int cardRadius = bundle.getInt(KEY_CARD_RADIUS);
 
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) confirmTV.getLayoutParams();
+
+        if (materialStyle) {
+            titleTV.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+            messageTV.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+            lp.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+            confirmTV.setLayoutParams(lp);
+        } else {
+            titleTV.setGravity(Gravity.CENTER);
+            messageTV.setGravity(Gravity.CENTER);
+            lp.gravity = Gravity.CENTER;
+            confirmTV.setLayoutParams(lp);
+        }
 
         if (TextUtils.isEmpty(title)) {
             titleTV.setVisibility(View.GONE);
@@ -112,13 +148,25 @@ public class ConfirmDialog extends DialogFragment {
             messageTipsTV.setVisibility(View.VISIBLE);
             messageTipsTV.setText(messageTips);
         }
-        if (imageIcon > 0) {
+        if (imageIcon == 0) {
             contentIV.setVisibility(View.GONE);
         } else {
             contentIV.setVisibility(View.VISIBLE);
             contentIV.setImageResource(imageIcon);
         }
-        confirmBTN.setText(btnText);
+        if (btnTextColor != 0) {
+            confirmTV.setTextColor(btnTextColor);
+        }
+        confirmTV.setText(btnText);
+        confirmTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onConfirmClickListener != null) {
+                    onConfirmClickListener.onClick(v);
+                }
+                dismissAllowingStateLoss();
+            }
+        });
         cardView.setRadius(cardRadius);
 
     }
@@ -171,6 +219,7 @@ public class ConfirmDialog extends DialogFragment {
     }
 
     public static class Builder {
+        private ConfirmDialog dialog;
         private Bundle mBundle;
 
         private View.OnClickListener onConfirmClickListener;
@@ -180,6 +229,7 @@ public class ConfirmDialog extends DialogFragment {
 
         public Builder() {
             mBundle = new Bundle();
+            dialog = new ConfirmDialog();
         }
 
         public Builder setOnConfirmClickListener(View.OnClickListener onConfirmClickListener) {
@@ -217,6 +267,11 @@ public class ConfirmDialog extends DialogFragment {
             return this;
         }
 
+        public Builder setConfirmTextColor(@ColorInt int btnTextColor) {
+            mBundle.putInt(KEY_BTN_TEXT_COLOR, btnTextColor);
+            return this;
+        }
+
         public Builder setCardRadius(int cardRadius) {
             mBundle.putInt(KEY_CARD_RADIUS, cardRadius);
             return this;
@@ -227,8 +282,28 @@ public class ConfirmDialog extends DialogFragment {
             return this;
         }
 
+        public Builder setCancelable(boolean cancelable) {
+            dialog.setCancelable(cancelable);
+            return this;
+        }
+
+        public Builder setHorizontalMargin(int left, int right) {
+            mBundle.putInt(KEY_MARGIN_LEFT, left);
+            mBundle.putInt(KEY_MARGIN_RIGHT, right);
+            return this;
+        }
+
+        public Builder setWidthPercent(@FloatRange(from = 0, to = 1.0) float marginPercent) {
+            mBundle.putFloat(KEY_WIDTH_PERCENT, marginPercent);
+            return this;
+        }
+
+        public Builder setMaterialStyle(boolean materialStyle) {
+            mBundle.putBoolean(KEY_MATERIAL_STYLE, materialStyle);
+            return this;
+        }
+
         public ConfirmDialog build() {
-            final ConfirmDialog dialog = new ConfirmDialog();
             dialog.setArguments(mBundle);
             dialog.setOnDismissListener(onDismissListener);
             dialog.setOnShowListener(onShowListener);
