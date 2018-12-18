@@ -2,6 +2,7 @@ package cn.blinkdagger.androidLab.widget;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.CallSuper;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
@@ -42,8 +43,8 @@ public class AutoDismissDialog extends DialogFragment {
     protected static final String KEY_MARGIN_RIGHT = "MARGIN_RIGHT";        //对话框右边距[将覆盖宽度百分比设置]
     protected static final String KEY_WIDTH_PERCENT = "WIDTH_PERCENT";      //对话框宽度百分比
     protected static final String KEY_MATERIAL_STYLE = "MATERIAL_STYLE";    //对话框原生风格
+    protected static final String KEY_AUTO_DISMISS_DURATION = "DURATION";   //对话框显示时间
 
-    private View.OnClickListener onConfirmClickListener;
 
     private DialogInterface.OnCancelListener mOnCancelListener;
     private DialogInterface.OnDismissListener mOnDismissListener;
@@ -52,6 +53,7 @@ public class AutoDismissDialog extends DialogFragment {
     private int marginLeft;
     private int marginRight;
     private float dialogWidthPercent;
+    private long dialogDismissDuration;
 
 
     @CallSuper
@@ -69,6 +71,8 @@ public class AutoDismissDialog extends DialogFragment {
             marginLeft = bundle.getInt(KEY_MARGIN_LEFT, 0);
             marginRight = bundle.getInt(KEY_MARGIN_RIGHT, 0);
             dialogWidthPercent = bundle.getFloat(KEY_WIDTH_PERCENT, 0.85f);
+            dialogDismissDuration = bundle.getLong(KEY_AUTO_DISMISS_DURATION, 0);
+
         }
         getDialog().getWindow().getDecorView().setPadding(marginLeft, 0, marginRight, 0); //消除边距
         WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
@@ -81,6 +85,14 @@ public class AutoDismissDialog extends DialogFragment {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         getDialog().getWindow().setAttributes(lp);
         getDialog().getWindow().setGravity(Gravity.CENTER);
+        if(dialogDismissDuration >0) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismiss();
+                }
+            }, dialogDismissDuration);
+        }
 
         return inflater.inflate(R.layout.dialog_auto_dismiss, container);
     }
@@ -157,9 +169,15 @@ public class AutoDismissDialog extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        getDialog().setOnShowListener(mOnShowListener);
+        getDialog().setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialog) {
+                if(mOnShowListener!=null){
+                    mOnShowListener.onShow(dialog);
+                }
+            }
+        });
     }
-
 
     public void show(FragmentManager fm) {
         if (fm == null) {
@@ -179,10 +197,6 @@ public class AutoDismissDialog extends DialogFragment {
 
     public void setOnShowListener(DialogInterface.OnShowListener mOnShowListener) {
         this.mOnShowListener = mOnShowListener;
-    }
-
-    public void setOnConfirmClickListener(View.OnClickListener onConfirmClickListener) {
-        this.onConfirmClickListener = onConfirmClickListener;
     }
 
     public static class Builder {
@@ -235,7 +249,7 @@ public class AutoDismissDialog extends DialogFragment {
         }
 
         public AutoDismissDialog.Builder setCancelable(boolean cancelable) {
-            dialog.setCancelable(cancelable);
+            dialog.getDialog().setCancelable(cancelable);
             return this;
         }
 
@@ -255,6 +269,11 @@ public class AutoDismissDialog extends DialogFragment {
             return this;
         }
 
+        public AutoDismissDialog.Builder setAutoDismissDuration(long duration) {
+            mBundle.putLong(KEY_AUTO_DISMISS_DURATION, duration);
+            return this;
+        }
+
         public ConfirmDialog build() {
             dialog.setArguments(mBundle);
             dialog.setOnDismissListener(onDismissListener);
@@ -263,4 +282,6 @@ public class AutoDismissDialog extends DialogFragment {
             return dialog;
         }
     }
+
+
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.base.BaseActivity;
 import cn.blinkdagger.androidLab.utils.DensityUtil;
+import cn.blinkdagger.androidLab.utils.JniUtil;
 import cn.blinkdagger.androidLab.widget.AutoDismissDialog;
 import cn.blinkdagger.androidLab.widget.ConfirmCancelDialog;
 import cn.blinkdagger.androidLab.widget.ConfirmDialog;
@@ -83,7 +84,7 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
                         .setRightActionText("确认")
                         .setTitle("标题")
                         .setCardRadius(DensityUtil.dp2px(this, 2))
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setMaterialStyle(true)
                         .build()
                         .show(getSupportFragmentManager());
@@ -95,7 +96,7 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
                         .setRightActionText("确认")
                         .setTitle("提示")
                         .setCardRadius(DensityUtil.dp2px(this, 2))
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setMaterialStyle(true)
                         .setOnInitEditViewListener(new ConfirmInputDialog.OnInitEditViewListener() {
                             @Override
@@ -122,10 +123,11 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
                 new AutoDismissDialog.Builder()
                         .setBgImageId(R.drawable.su)
                         .setMessage("你的密码已经重置成功，请重新登录！")
-                        .setTitle("标题")
+                        .setTitle("标题+")
                         .setCardRadius(DensityUtil.dp2px(this, 2))
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setMaterialStyle(true)
+                        .setAutoDismissDuration(2000)
                         .build()
                         .show(getSupportFragmentManager());
 
@@ -137,7 +139,7 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
                 Log.e("外部存储公有【音乐】：", Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC).getAbsolutePath());
 
                 Log.e("外部存储APP私有：", getExternalCacheDir().getAbsolutePath());
-                Log.e("外部存储APP私有：", getExternalFilesDir("data").getAbsolutePath());
+                Log.e("外部存储APP私有：", getExternalFilesDir("fsdkfskd").getAbsolutePath());
 
                 break;
         }
