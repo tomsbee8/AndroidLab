@@ -121,13 +121,12 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.confirm_dismiss_tv:
                 new AutoDismissDialog.Builder()
-                        .setBgImageId(R.drawable.su)
-                        .setMessage("你的密码已经重置成功，请重新登录！")
-                        .setTitle("标题+")
+                        .setMessage("充值完成！")
+                        .setTitle("标题")
                         .setCardRadius(DensityUtil.dp2px(this, 2))
-                        .setCancelable(true)
-                        .setMaterialStyle(true)
-                        .setAutoDismissDuration(2000)
+                        .setCancelable(false)
+                        .setMaterialStyle(false)
+                        .setAutoDismissDuration(3000)
                         .build()
                         .show(getSupportFragmentManager());
 

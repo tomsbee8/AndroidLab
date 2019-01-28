@@ -66,8 +66,10 @@ public class DeviceUtil {
     }
 
     /**
-     *
+     * 检测SD卡状态
      */
-
+    public static boolean isSDPresent() {
+        return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+    }
 
 }

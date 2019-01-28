@@ -1,4 +1,4 @@
-package cn.blinkdagger.androidLab.utils.CrashHandle;
+package cn.blinkdagger.androidLab.tools;
 
 import android.content.Context;
 import android.os.Environment;
@@ -21,7 +21,10 @@ import java.util.Map;
 
 
 /**
- * Created by d on 2016/11/16.
+ * @Author ls
+ * @Date 2016/11/28
+ * @Description Android 内外部缓存文件夹工具
+ * @Version
  */
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler {

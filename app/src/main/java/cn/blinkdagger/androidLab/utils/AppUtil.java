@@ -1,6 +1,7 @@
 package cn.blinkdagger.androidLab.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
@@ -166,5 +167,22 @@ public class AppUtil {
     public static void getSystemSetting(Context context, String packageName) {
         if (TextUtils.isEmpty(packageName)) return;
         context.startActivity(IntentUtil.getAppDetailsSettingIntent(packageName));
+    }
+
+    /**
+     * 　获取渠道号
+     *
+     * @return
+     */
+    public static String getChannelName(Context context, String channelMetaNameKey) {
+        String channelName = null;
+        ApplicationInfo appInfo;
+        try {
+            appInfo = context.getPackageManager().getApplicationInfo(getPackageName(context), PackageManager.GET_META_DATA);
+            channelName = appInfo.metaData.getString(channelMetaNameKey);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return channelName;
     }
 }

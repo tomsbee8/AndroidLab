@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
@@ -32,7 +33,7 @@ public class WebViewActivity extends BaseActivity implements CommonWebView.LoadL
     private View mCustomView; // 视频播放View
 
     //原始的url
-    private String url;
+    private String mUrl;
     private int mCurrentProgress;
 
     //重定向的url，用于登陆成功后
@@ -58,6 +59,7 @@ public class WebViewActivity extends BaseActivity implements CommonWebView.LoadL
 
         dxyWebView.setBackgroundColor(getResources().getColor(R.color.color_f4f4f4));
 
+        mUrl = getIntent().getStringExtra("url");
         String title = getIntent().getStringExtra("title");
         setTitle(title);
 
@@ -66,7 +68,19 @@ public class WebViewActivity extends BaseActivity implements CommonWebView.LoadL
 
     @Override
     protected void initData() {
-        // cookie
+        dxyWebView.setUploadFileParam("image/*", "选择图片", true);
+        dxyWebView.setListener(this, this);
+
+        // 如果在没有登录的状态下，则 WebView 不需要缓存
+//        if (!UserManager.isLogin()) {
+//            dxyWebView.clearHistory();
+//            dxyWebView.clearFormData();
+//            dxyWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        }
+        WebViewSettings.setAllowFileAccess(dxyWebView.getSettings(),true,mUrl);
+        dxyWebView.clearCache(true);
+        dxyWebView.requestFocus();
+        dxyWebView.loadUrl(mUrl);
 
     }
 
@@ -120,21 +134,6 @@ public class WebViewActivity extends BaseActivity implements CommonWebView.LoadL
         dxyWebView.onActivityResult(requestCode, resultCode, intent);
     }
 
-    private void initWebView() {
-        dxyWebView.setUploadFileParam("image/*", "选择图片", true);
-        dxyWebView.setListener(this, this);
-
-        // 如果在没有登录的状态下，则 WebView 不需要缓存
-//        if (!UserManager.isLogin()) {
-//            dxyWebView.clearHistory();
-//            dxyWebView.clearFormData();
-//            dxyWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-//        }
-        dxyWebView.clearCache(true);
-        dxyWebView.requestFocus();
-        dxyWebView.loadUrl(url);
-    }
-
     @Override
     public void onPageStarted(String url, Bitmap favicon) {
         progressBar.setVisibility(View.VISIBLE);
@@ -179,7 +178,6 @@ public class WebViewActivity extends BaseActivity implements CommonWebView.LoadL
     class CustomWebChromeClient extends WebChromeClient {
 
         private boolean isStart = false;
-
 
         @Override
         public void onProgressChanged(WebView view, int newProgress) {

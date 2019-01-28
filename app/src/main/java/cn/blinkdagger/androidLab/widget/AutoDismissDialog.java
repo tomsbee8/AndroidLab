@@ -38,6 +38,7 @@ public class AutoDismissDialog extends DialogFragment {
     protected static final String KEY_TITLE = "TITLE";                      //对话框标题
     protected static final String KEY_IMAGE_ICON = "IMAGE_RES_ID";          //对话框图标Id
     protected static final String KEY_MESSAGE = "MESSAGE";                  //对话框内容
+    protected static final String KEY_CANCELABLE = "CANCEL";                //对话框是否可以取消
     protected static final String KEY_CARD_RADIUS = "DIALOG_RADIUS";        //对话框圆角半径
     protected static final String KEY_MARGIN_LEFT = "MARGIN_LEFT";          //对话框左边距[将覆盖宽度百分比设置]
     protected static final String KEY_MARGIN_RIGHT = "MARGIN_RIGHT";        //对话框右边距[将覆盖宽度百分比设置]
@@ -54,6 +55,7 @@ public class AutoDismissDialog extends DialogFragment {
     private int marginRight;
     private float dialogWidthPercent;
     private long dialogDismissDuration;
+    private boolean cancelable;
 
 
     @CallSuper
@@ -72,10 +74,12 @@ public class AutoDismissDialog extends DialogFragment {
             marginRight = bundle.getInt(KEY_MARGIN_RIGHT, 0);
             dialogWidthPercent = bundle.getFloat(KEY_WIDTH_PERCENT, 0.85f);
             dialogDismissDuration = bundle.getLong(KEY_AUTO_DISMISS_DURATION, 0);
-
+            cancelable = bundle.getBoolean(KEY_CANCELABLE,true);
         }
         getDialog().getWindow().getDecorView().setPadding(marginLeft, 0, marginRight, 0); //消除边距
         WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
+
+        setCancelable(cancelable);
 
         if (getActivity() != null && marginLeft == 0 && marginRight == 0) {
             lp.width = (int) (ScreenUtil.getScreenWidth(getActivity()) * dialogWidthPercent);
@@ -112,7 +116,7 @@ public class AutoDismissDialog extends DialogFragment {
         }
         CharSequence title = bundle.getCharSequence(KEY_TITLE);
         CharSequence message = bundle.getCharSequence(KEY_MESSAGE);
-        Boolean materialStyle = bundle.getBoolean(KEY_MATERIAL_STYLE);
+        boolean materialStyle = bundle.getBoolean(KEY_MATERIAL_STYLE);
         int imageIcon = bundle.getInt(KEY_IMAGE_ICON, 0);
         int cardRadius = bundle.getInt(KEY_CARD_RADIUS);
 
@@ -146,7 +150,6 @@ public class AutoDismissDialog extends DialogFragment {
             contentIV.setImageResource(imageIcon);
         }
         cardView.setRadius(cardRadius);
-
 
     }
 
@@ -200,7 +203,7 @@ public class AutoDismissDialog extends DialogFragment {
     }
 
     public static class Builder {
-        private ConfirmDialog dialog;
+        private AutoDismissDialog dialog;
         private Bundle mBundle;
 
         private View.OnClickListener onConfirmClickListener;
@@ -210,7 +213,7 @@ public class AutoDismissDialog extends DialogFragment {
 
         public Builder() {
             mBundle = new Bundle();
-            dialog = new ConfirmDialog();
+            dialog = new AutoDismissDialog();
         }
 
         public AutoDismissDialog.Builder setOnConfirmClickListener(View.OnClickListener onConfirmClickListener) {
@@ -249,7 +252,7 @@ public class AutoDismissDialog extends DialogFragment {
         }
 
         public AutoDismissDialog.Builder setCancelable(boolean cancelable) {
-            dialog.getDialog().setCancelable(cancelable);
+            mBundle.putBoolean(KEY_CANCELABLE, cancelable);
             return this;
         }
 
@@ -274,14 +277,11 @@ public class AutoDismissDialog extends DialogFragment {
             return this;
         }
 
-        public ConfirmDialog build() {
+        public AutoDismissDialog build() {
             dialog.setArguments(mBundle);
             dialog.setOnDismissListener(onDismissListener);
             dialog.setOnShowListener(onShowListener);
-            dialog.setOnConfirmClickListener(onConfirmClickListener);
             return dialog;
         }
     }
-
-
 }
