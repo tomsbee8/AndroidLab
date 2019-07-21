@@ -8,6 +8,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.blinkdagger.android.qrcode.QRCaptureActivity;
 import cn.blinkdagger.androidLab.base.BaseActivity;
 import cn.blinkdagger.androidLab.entity.MainItem;
 import cn.blinkdagger.androidLab.R;
@@ -43,14 +44,14 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
         mainItemList =new ArrayList<MainItem>(){{
             add(new MainItem(1,"SelectBarView"));
             add(new MainItem(1,"TipView"));
-            add(new MainItem(1,"TipViewmenu"));
+            add(new MainItem(1,"TipViewMenu"));
             add(new MainItem(1,"CustomPopup"));
             add(new MainItem(1,"CollaspingTab"));
             add(new MainItem(1,"DataBinding"));
             add(new MainItem(1,"DynamicBlur"));
             add(new MainItem(1,"CommonDialog"));
             add(new MainItem(1,"HorizontalStepView"));
-            add(new MainItem(1,"HorizontalStepView"));
+            add(new MainItem(1,"QRCodeScan"));
         }};
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
         mainRV.setLayoutManager(gridLayoutManager);
@@ -90,6 +91,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
                 startActivity(new Intent(this,StepViewActivity.class));
                 break;
             case 9:
+                startActivity(new Intent(this, QRCaptureActivity.class));
                 break;
         }
     }

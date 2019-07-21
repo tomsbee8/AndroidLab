@@ -51,6 +51,7 @@
             android:theme="@style/AppTheme"/>
         <activity android:name=".ui.activity.DialogExampleActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.activity.QRScanActivity" />
 
     </application>
 

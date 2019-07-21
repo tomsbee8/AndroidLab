@@ -27,7 +27,6 @@ public interface ActivityComponent {
      *
      * @param detailActivity
      */
-    //电商订单详情页面
     void inject(Activity detailActivity);
 
 
