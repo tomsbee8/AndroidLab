@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -6,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "cn.blinkdagger.androidLab.androidLab"
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -19,7 +21,7 @@ android {
             }
         }
 
-        ndk{
+        ndk {
             abiFilters "x86", "x86_64", "armeabi-v7a"
         }
     }
@@ -41,9 +43,10 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    implementation project(":qrcode")
+    //kotlin
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31"
+
     //view
     api 'com.android.support:appcompat-v7:28.0.0'
     api 'com.android.support:support-v13:28.0.0'
@@ -77,4 +80,8 @@ dependencies {
     api 'com.orhanobut:logger:1.15'
     api 'com.google.code.gson:gson:2.8.5'
     api 'com.airbnb.android:lottie:2.2.0'
+    implementation 'android.arch.work:work-runtime:1.0.0'
+
+
+
 }

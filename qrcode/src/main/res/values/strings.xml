@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">qrcode</string>
+    <string name="camera_permissions_remind">扫描二维码需要打开相机权限</string>
+</resources>
