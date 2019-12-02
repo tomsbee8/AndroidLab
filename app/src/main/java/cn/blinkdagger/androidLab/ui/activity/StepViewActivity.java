@@ -1,6 +1,6 @@
 package cn.blinkdagger.androidLab.ui.activity;
 
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;

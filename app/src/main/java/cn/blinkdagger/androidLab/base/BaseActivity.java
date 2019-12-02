@@ -3,10 +3,10 @@ package cn.blinkdagger.androidLab.base;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +121,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             mToolbar = (Toolbar) findViewById(R.id.common_tb);
             setSupportActionBar(mToolbar);
-            android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+            androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowTitleEnabled(false);
@@ -153,7 +153,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void setNavigationIconInvisiable() {
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
         }

@@ -12,7 +12,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;

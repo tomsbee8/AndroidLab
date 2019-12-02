@@ -1,10 +1,10 @@
 package cn.blinkdagger.androidLab.ui.adapter;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.IntDef;
-import android.support.annotation.IntRange;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.IntDef;
+import androidx.annotation.IntRange;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 

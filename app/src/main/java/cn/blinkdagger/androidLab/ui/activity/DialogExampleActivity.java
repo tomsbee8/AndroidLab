@@ -1,11 +1,9 @@
 package cn.blinkdagger.androidLab.ui.activity;
 
 
-import android.content.DialogInterface;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.base.BaseActivity;
 import cn.blinkdagger.androidLab.utils.DensityUtil;
-import cn.blinkdagger.androidLab.utils.JniUtil;
 import cn.blinkdagger.androidLab.widget.AutoDismissDialog;
 import cn.blinkdagger.androidLab.widget.ConfirmCancelDialog;
 import cn.blinkdagger.androidLab.widget.ConfirmDialog;

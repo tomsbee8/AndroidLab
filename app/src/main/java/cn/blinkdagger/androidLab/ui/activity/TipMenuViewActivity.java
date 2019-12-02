@@ -1,7 +1,7 @@
 package cn.blinkdagger.androidLab.ui.activity;
 
 import android.graphics.drawable.BitmapDrawable;
-import android.support.design.widget.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;

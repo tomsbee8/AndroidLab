@@ -2,10 +2,10 @@ package cn.blinkdagger.androidLab.widget;
 
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.AnimatorRes;
-import android.support.annotation.FloatRange;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.StyleRes;
+import androidx.annotation.AnimatorRes;
+import androidx.annotation.FloatRange;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StyleRes;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;

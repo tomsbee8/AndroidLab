@@ -1,6 +1,6 @@
 package cn.blinkdagger.androidLab.ui.activity;
 
-import android.support.design.widget.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.view.View;
 
 import cn.blinkdagger.androidLab.base.BaseActivity;
