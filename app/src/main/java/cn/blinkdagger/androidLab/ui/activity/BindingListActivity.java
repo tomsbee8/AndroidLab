@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.blinkdagger.androidLab.base.BaseActivity;
 import cn.blinkdagger.androidLab.entity.CategoryItem;
 import cn.blinkdagger.androidLab.R;
@@ -24,8 +22,7 @@ import cn.blinkdagger.androidLab.ui.adapter.CategoryListAdapter;
 
 public class BindingListActivity extends BaseActivity {
 
-    @BindView(R.id.binding_list_rv)
-    RecyclerView bindingListRv;
+    private RecyclerView bindingListRv;
 
     private CategoryListAdapter adapter;
 
@@ -42,7 +39,7 @@ public class BindingListActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolbarTitle("DataBindingList");
-        ButterKnife.bind(this);
+        bindingListRv = findViewById(R.id.binding_list_rv);
     }
 
     @Override

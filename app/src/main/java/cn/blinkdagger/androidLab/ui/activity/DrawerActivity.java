@@ -11,16 +11,12 @@ import cn.blinkdagger.androidLab.base.BaseActivity;
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.ui.fragment.DrawerFragment;
 
-import butterknife.BindView;
 
 public class DrawerActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.list_view_menu)
-    ListView listViewMenu;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
+    private Toolbar mToolbar;
+    private ListView listViewMenu;
+    private DrawerLayout drawerLayout;
 
     DrawerFragment fragment;
     public static final int DISPLAY_SPRING_IMAGE =1;
@@ -40,7 +36,9 @@ public class DrawerActivity extends BaseActivity implements AdapterView.OnItemCl
 
     @Override
     protected void initView() {
-
+        mToolbar = findViewById(R.id.toolbar);
+        listViewMenu = findViewById(R.id.list_view_menu);
+        drawerLayout = findViewById(R.id.drawer_layout);
     }
 
     @Override
