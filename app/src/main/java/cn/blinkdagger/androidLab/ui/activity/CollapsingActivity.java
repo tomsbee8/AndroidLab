@@ -1,20 +1,19 @@
 package cn.blinkdagger.androidLab.ui.activity;
 
-import android.os.Bundle;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.widget.Toast;
 
-import cn.blinkdagger.androidLab.R;
-import cn.blinkdagger.androidLab.ui.fragment.MaximListFragment;
-import cn.blinkdagger.androidLab.ui.adapter.BaseFragmentAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
-public class CollapsingActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
-    private Toolbar toolbar;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.tabs.TabLayout;
+
+import cn.blinkdagger.androidLab.R;
+import cn.blinkdagger.androidLab.base.BaseActivity;
+import cn.blinkdagger.androidLab.ui.adapter.BaseFragmentAdapter;
+import cn.blinkdagger.androidLab.ui.fragment.MaximListFragment;
+
+public class CollapsingActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -22,22 +21,34 @@ public class CollapsingActivity extends AppCompatActivity implements ViewPager.O
     String[] mTitles = new String[]{"主页", "微博", "相册"};
     Fragment mainFragment, weiboFragment, galleryFragment;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll);
-        toolbar = findViewById(R.id.toolbar);
+    public int getContentLayout() {
+        return R.layout.activity_scroll;
+    }
+
+    @Override
+    protected boolean useToolbar() {
+        return false;
+    }
+
+    @Override
+    protected void initView() {
         collapsingToolbarLayout = findViewById(R.id.coll_toolbar_layout);
         mViewPager = findViewById(R.id.viewpager);
         mTabLayout = findViewById(R.id.tabs);
 
         setupToolBar();
         setupViewPager();
+    }
+
+    @Override
+    protected void initData() {
 
     }
 
     private void setupToolBar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(getMToolbar());
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);

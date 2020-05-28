@@ -2,10 +2,12 @@ package cn.blinkdagger.androidLab.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Environment
 import android.telephony.TelephonyManager
 import android.text.TextUtils
+
 
 /**
  * Created by d on 2016/11/16.
@@ -63,4 +65,14 @@ object DeviceUtil {
      */
     val isSDPresent: Boolean
         get() = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+
+    /**
+     * 检测系统主题是否为深色模式，例如设置-显示-深色主题背景
+     */
+    @JvmStatic
+    fun isSystemInNightMode(context: Context): Boolean{
+        var mSysThemeConfig: Int = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return mSysThemeConfig == Configuration.UI_MODE_NIGHT_YES
+    }
+
 }

@@ -20,7 +20,7 @@ public class SelectBarViewActivity extends BaseActivity {
     private SelectBarView barView;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_selectbar_view;
     }
 

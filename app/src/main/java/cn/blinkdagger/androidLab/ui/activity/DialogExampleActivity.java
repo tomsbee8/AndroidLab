@@ -33,7 +33,7 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
     private TextView confirmDismissTV;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_dialog_example;
     }
 
@@ -52,7 +52,6 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initData() {
-        setToolbarTitle("DialogExample");
         confirmTV.setOnClickListener(this);
         confirmCancelTV.setOnClickListener(this);
         confirmInputTV.setOnClickListener(this);

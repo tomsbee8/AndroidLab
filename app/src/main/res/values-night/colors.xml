@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#181818</color>
+    <color name="colorPrimaryDark">#121212</color>
+    <color name="colorAccent">#5cb975</color>
+
+    <!-- 主题相关颜色值 -->
+    <color name="main_color_1">#5d91b2</color>
+    <color name="main_color_2">#fffdcd</color>
+    <color name="main_color_3">#e1ba86</color>
+    <color name="main_color_4">#b76369</color>
+
+
+    <!-- 基本颜色值 -->
+    <color name="white">#808080</color>
+    <color name="black">#FFFFFF</color>
+    <color name="red">#ff0000</color>
+    <color name="green">#449c1d</color>
+    <color name="gray">#efebde</color>
+    <color name="blue">#3a5aad</color>
+    <color name="yellow">#ffe891</color>
+    <color name="transparent">#00000000</color>
+
+
+    <!-- 规范颜色值 -->
+    <color name="text_black">#FFFFFF</color>
+    <color name="text_title">#AAAAAA</color>
+    <color name="text_name">#878787</color>
+    <color name="text_content">#999999</color>
+    <color name="text_hint">#2a2a2a</color>
+    <color name="split_line">#0e0e0e</color>
+    <color name="main_bg">#0c0c0c</color>
+    <color name="text_white">#000000</color>
+
+
+    <!-- 其他颜色值 -->
+    <color name="color_333333">#cccccc</color>
+    <color name="color_666666">#999999</color>
+    <color name="color_999999">#666666</color>
+    <color name="color_f4f4f4">#0a0a0a</color>
+    <color name="color_7c5dc7">#7c5dc7</color>
+
+
+</resources>

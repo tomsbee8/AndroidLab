@@ -219,25 +219,18 @@ object StatusbarColorUtils {
         try {
             mSetStatusBarColorIcon = Activity::class.java.getMethod("setStatusBarDarkIcon", Int::class.javaPrimitiveType)
         } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
         }
         try {
             mSetStatusBarDarkIcon = Activity::class.java.getMethod("setStatusBarDarkIcon", Boolean::class.javaPrimitiveType)
-        } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
-        }
+        } catch (e: NoSuchMethodException) { }
         try {
             mStatusBarColorFiled = WindowManager.LayoutParams::class.java.getField("statusBarColor")
-        } catch (e: NoSuchFieldException) {
-            e.printStackTrace()
-        }
+        } catch (e: NoSuchFieldException) { }
         try {
             val field = View::class.java.getField("SYSTEM_UI_FLAG_LIGHT_STATUS_BAR")
             SYSTEM_UI_FLAG_LIGHT_STATUS_BAR = field.getInt(null)
         } catch (e: NoSuchFieldException) {
-            e.printStackTrace()
         } catch (e: IllegalAccessException) {
-            e.printStackTrace()
         }
     }
 }

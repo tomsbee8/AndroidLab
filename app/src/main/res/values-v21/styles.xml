@@ -1,9 +1,5 @@
 <resources>
 
-    <style name="AppTheme.Main" parent="AppTheme">
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-    </style>
 
     <style name="AppCardView" parent="@style/CardView.Light">
         <item name="cardPreventCornerOverlap">false</item>

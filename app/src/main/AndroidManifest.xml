@@ -14,7 +14,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity
             android:name=".ui.activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -25,33 +26,21 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.activity.CollapsingActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.CollapsingActivity" />
         <activity android:name=".ui.activity.NestedScrollActivity" />
-        <activity
-            android:name=".ui.activity.ImmersiveModeActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".ui.activity.DrawerActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.CustomPopupWindowActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.TipMenuViewActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.TipViewActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.SelectBarViewActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.BindingListActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.StepViewActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.activity.DialogExampleActivity"
-            android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.activity.ImmersiveModeActivity" />
+        <activity android:name=".ui.activity.DrawerActivity" />
+        <activity android:name=".ui.activity.CustomPopupWindowActivity" />
+        <activity android:name=".ui.activity.TipMenuViewActivity" />
+        <activity android:name=".ui.activity.TipViewActivity" />
+        <activity android:name=".ui.activity.SelectBarViewActivity" />
+        <activity android:name=".ui.activity.BindingListActivity" />
+        <activity android:name=".ui.activity.StepViewActivity" />
+        <activity android:name=".ui.activity.DialogExampleActivity" />
         <activity android:name=".ui.activity.QRScanActivity" />
+        <activity android:name=".hybird.WebViewActivity" />
+        <activity android:name=".ui.activity.SkinModeActivity" />
 
     </application>
 

@@ -18,6 +18,8 @@
 
     <string name="dialog_confirm">确认</string>
     <string name="dialog_cancel">取消</string>
+    <string name="title_mediapipe">MediaPip</string>
+    <string name="app_current_mode">当前模式：%s</string>
 
 
 </resources>

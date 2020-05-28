@@ -1,12 +1,9 @@
 package cn.blinkdagger.androidLab.base
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -16,30 +13,29 @@ import cn.blinkdagger.androidLab.utils.SystemBarUtil
 
 /**
  * 类描述：基本视图
- * 创建人：ls
  * 创建时间：2016/11/22
  * 修改人：
  * 修改时间：
  * 修改备注：
  */
 abstract class BaseActivity : AppCompatActivity() {
-    private var mToolbar: Toolbar? = null
-    private var mContentRL: RelativeLayout? = null
+    var mToolbar: Toolbar? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(getContentLayoutId())
+        setStatusBar()
+        initToolbar()
+        initView()
+        initData()
+    }
+
     override fun onStart() {
         super.onStart()
     }
 
     override fun onRestart() {
         super.onRestart()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(contentLayout)
-        setToolBar()
-        setStatusBar()
-        initView()
-        initData()
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -62,40 +58,39 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    @get:LayoutRes
-    protected abstract val layout: Int
+    @LayoutRes
+    abstract fun getContentLayout(): Int
 
-    @get:LayoutRes
-    protected val contentLayout: Int
-        protected get() = if (useToolbar()) {
-            R.layout.common_toolbar_container
+    protected open fun useToolbar(): Boolean = true
+    protected abstract fun initView()
+    protected abstract fun initData()
+
+    private fun getContentLayoutId(): Int {
+        return if (useToolbar()) {
+            R.layout.root_toolbar_container
         } else {
-            layout
+            getContentLayout()
         }
+    }
+
 
     protected open fun setStatusBar() {
         SystemBarUtil.setStatusBarColor(this, resources.getColor(R.color.colorPrimary), true)
     }
 
-    protected abstract fun useToolbar(): Boolean
-    protected abstract fun initView()
-    protected abstract fun initData()
-    protected fun setToolBar() {
+    private fun initToolbar() {
         if (useToolbar()) {
-            mContentRL = findViewById<View>(R.id.common_content_rl) as RelativeLayout
-            val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val contentView = inflater.inflate(layout, null)
-            val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT)
-            mContentRL!!.addView(contentView, params)
-            mToolbar = findViewById<View>(R.id.common_tb) as Toolbar
-            setSupportActionBar(mToolbar)
-            val actionBar = supportActionBar
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true)
-                actionBar.setDisplayShowTitleEnabled(false)
+            findViewById<LinearLayout>(R.id.root_layout)?.run {
+                val contentView = layoutInflater.inflate( getContentLayout(),this,false)
+                addView(contentView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             }
-            mToolbar!!.setNavigationOnClickListener { onNavigationIconClick() }
+            mToolbar = findViewById<Toolbar>(R.id.common_tool_bar)
+            setSupportActionBar(mToolbar)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setDisplayShowTitleEnabled(false)
+            }
+            mToolbar?.setNavigationOnClickListener { onNavigationIconClick() }
         }
     }
 
@@ -103,18 +98,17 @@ abstract class BaseActivity : AppCompatActivity() {
         setToolbarTitle(charSequence, true)
     }
 
-    protected fun setToolbarTitle(charSequence: CharSequence?, centerHorizontal: Boolean) {
-        if (mToolbar != null) {
-            val titleTV = mToolbar!!.findViewById<TextView>(R.id.common_center_tv)
+    protected fun setToolbarTitle(charSequence: CharSequence?, centerHorizontal: Boolean = true) {
+        mToolbar?.let {
             if (centerHorizontal) {
-                titleTV.text = charSequence
+                it.findViewById<TextView>(R.id.common_center_tv)?.text =  charSequence
             } else {
-                mToolbar!!.title = charSequence
+                it.title = charSequence
             }
         }
     }
 
-    protected fun setNavigationIconInvisiable() {
+    protected fun setNavigationIconInvisible() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(false)
     }

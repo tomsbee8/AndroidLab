@@ -20,7 +20,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
     private MainAdapter mainAdapter;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_main;
     }
 
@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
 
     @Override
     protected void initData() {
-        setNavigationIconInvisiable();
+        setNavigationIconInvisible();
         setToolbarTitle("AndroidLab");
 
         mainItemList =new ArrayList<MainItem>(){{
@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
             add(new MainItem(1,"CommonDialog"));
             add(new MainItem(1,"HorizontalStepView"));
             add(new MainItem(1,"QRCodeScan"));
+            add(new MainItem(1,"SkinMode"));
         }};
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
         mainRV.setLayoutManager(gridLayoutManager);
@@ -90,6 +91,9 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
                 break;
             case 9:
                 startActivity(new Intent(this, QRCaptureActivity.class));
+                break;
+            case 10:
+                startActivity(new Intent(this, SkinModeActivity.class));
                 break;
         }
     }

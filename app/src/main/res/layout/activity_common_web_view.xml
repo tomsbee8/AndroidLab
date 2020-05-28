@@ -1,19 +1,19 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dxy_wv_root"
+    android:id="@+id/frame_web_view_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fadingEdge="none"
     android:scrollbars="none" >
 
     <cn.blinkdagger.androidLab.hybird.CommonWebView
-        android:id="@+id/dxy_webView"
+        android:id="@+id/common_web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
-        android:id="@+id/dxy_wv_pb"
+        android:id="@+id/common_web_pb"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:progressDrawable="@drawable/layer_progressbar"

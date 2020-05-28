@@ -67,7 +67,7 @@ class ConfirmDialog : DialogFragment() {
         val messageTipsTV = view.findViewById<TextView>(R.id.dialog_message_tips_tv)
         val confirmTV = view.findViewById<TextView>(R.id.dialog_confirm_tv)
         val contentIV = view.findViewById<ImageView>(R.id.dialog_content_iv)
-        val cardView: CardView = view.findViewById(R.id.dialog_card_view)
+        val cardView: CardView = view.findViewById<CardView>(R.id.dialog_card_view)
         val bundle = arguments ?: return
         val title = bundle.getCharSequence(KEY_TITLE)
         val message = bundle.getCharSequence(KEY_MESSAGE)

@@ -27,7 +27,7 @@ public class BindingListActivity extends BaseActivity {
     private CategoryListAdapter adapter;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_binding_list;
     }
 

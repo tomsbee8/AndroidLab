@@ -25,7 +25,7 @@ public class DrawerActivity extends BaseActivity implements AdapterView.OnItemCl
     public static final int DISPLAY_WINTER_IMAGE =4;
 
     @Override
-    protected int getLayout() {
+    public  int getContentLayout() {
         return R.layout.activity_drawer;
     }
 

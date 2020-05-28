@@ -21,7 +21,7 @@ public class CustomPopupWindowActivity extends BaseActivity {
     private FloatingActionButton actionButton;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_custom_popup_window;
     }
 

@@ -36,7 +36,7 @@ public class StepViewActivity extends BaseActivity {
     }};
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_step_view;
     }
 

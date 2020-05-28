@@ -28,7 +28,7 @@ public class TipMenuViewActivity extends BaseActivity {
     private FloatingActionButton fab;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_tip_menu_view;
     }
 

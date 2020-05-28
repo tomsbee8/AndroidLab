@@ -32,19 +32,18 @@ public class ActiveTabSampleActivity extends BaseActivity {
     private ImageView tabIV;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_active_tab_layout;
     }
 
     @Override
-    protected boolean useToolbar() {
+    public boolean useToolbar() {
         return false;
     }
 
     @Override
     protected void initView() {
         tabIV = findViewById(R.id.tab_iv);
-
     }
 
     @Override

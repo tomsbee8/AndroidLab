@@ -16,7 +16,7 @@ public class QRScanActivity extends BaseActivity{
 
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_dynamic_blur;
     }
 
