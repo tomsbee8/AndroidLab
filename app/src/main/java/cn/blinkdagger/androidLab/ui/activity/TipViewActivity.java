@@ -18,7 +18,7 @@ public class TipViewActivity extends BaseActivity {
     private TipView tipView;
 
     @Override
-    protected int getLayout() {
+    public int getContentLayout() {
         return R.layout.activity_tip_view;
     }
 
@@ -29,6 +29,7 @@ public class TipViewActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setToolbarTitle("TipView");
         tipView =findViewById(R.id.tip_view);
     }
 
