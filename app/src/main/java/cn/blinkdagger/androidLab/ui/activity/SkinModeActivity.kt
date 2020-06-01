@@ -29,6 +29,7 @@ class SkinModeActivity : BaseActivity() {
             }else{
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
+            recreate()
         }
     }
 
@@ -46,6 +47,9 @@ class SkinModeActivity : BaseActivity() {
             AppCompatDelegate.MODE_NIGHT_NO -> skin_mode_tv.text = getString(R.string.app_current_mode, "浅色模式")
             AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY -> skin_mode_tv.text = getString(R.string.app_current_mode, "跟随省电模式")
             AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM -> skin_mode_tv.text = getString(R.string.app_current_mode, "跟随系统")
+            AppCompatDelegate.MODE_NIGHT_UNSPECIFIED ->{
+                skin_mode_tv.text = getString(R.string.app_current_mode, "未指定")
+            }
         }
     }
 }

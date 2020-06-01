@@ -1,15 +1,20 @@
 package cn.blinkdagger.androidLab.base
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import cn.blinkdagger.androidLab.R
 import cn.blinkdagger.androidLab.utils.SystemBarUtil
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
+
 
 /**
  * 类描述：基本视图
@@ -19,11 +24,13 @@ import cn.blinkdagger.androidLab.utils.SystemBarUtil
  * 修改备注：
  */
 abstract class BaseActivity : AppCompatActivity() {
+    private var mLastDayNightMode = 0
     var mToolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getContentLayoutId())
+        mLastDayNightMode = AppCompatDelegate.getDefaultNightMode()
         setStatusBar()
         initToolbar()
         initView()
@@ -31,11 +38,16 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
+        AnkoLogger(javaClass.simpleName.take(23)).info { "onDestroy" }
         super.onStart()
     }
 
     override fun onRestart() {
+        AnkoLogger(javaClass.simpleName.take(23)).info { "onDestroy" }
         super.onRestart()
+        if (Build.VERSION.SDK_INT < 24 && mLastDayNightMode != AppCompatDelegate.getDefaultNightMode()) {
+            recreate()
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -43,18 +55,22 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onPause() {
+        AnkoLogger(javaClass.simpleName.take(23)).info { "onDestroy" }
         super.onPause()
     }
 
     override fun onResume() {
+        AnkoLogger(javaClass.simpleName.take(23)).info { "onDestroy" }
         super.onResume()
     }
 
     override fun onStop() {
+        AnkoLogger(javaClass.simpleName.take(23)).info { "onStop" }
         super.onStop()
     }
 
     override fun onDestroy() {
+        AnkoLogger(javaClass.simpleName.take(23)).info { "onDestroy" }
         super.onDestroy()
     }
 

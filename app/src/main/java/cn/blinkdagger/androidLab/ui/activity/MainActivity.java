@@ -1,6 +1,9 @@
 package cn.blinkdagger.androidLab.ui.activity;
 
 import android.content.Intent;
+import android.os.Build;
+
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +15,7 @@ import cn.blinkdagger.androidLab.base.BaseActivity;
 import cn.blinkdagger.androidLab.entity.MainItem;
 import cn.blinkdagger.androidLab.R;
 import cn.blinkdagger.androidLab.ui.adapter.MainAdapter;
+import cn.blinkdagger.androidLab.utils.ToastUtil;
 
 public class MainActivity extends BaseActivity implements MainAdapter.OnMainItemClickListener{
 
