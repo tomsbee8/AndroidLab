@@ -31,7 +31,7 @@ public class QRScanActivity extends BaseActivity{
 
     @Override
     protected void initData() {
-        setToolbarTitle("DynamicBlur");
+        setToolbarTitle("");
 
     }
 

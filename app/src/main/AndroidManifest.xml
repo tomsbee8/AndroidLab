@@ -35,12 +35,12 @@
         <activity android:name=".ui.activity.TipMenuViewActivity" />
         <activity android:name=".ui.activity.TipViewActivity" />
         <activity android:name=".ui.activity.SelectBarViewActivity" />
-        <activity android:name=".ui.activity.BindingListActivity" />
         <activity android:name=".ui.activity.StepViewActivity" />
         <activity android:name=".ui.activity.DialogExampleActivity" />
         <activity android:name=".ui.activity.QRScanActivity" />
         <activity android:name=".hybird.WebViewActivity" />
         <activity android:name=".ui.activity.SkinModeActivity" />
+        <activity android:name=".ui.activity.VideoPlayerActivity" />
 
     </application>
 
