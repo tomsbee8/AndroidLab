@@ -6,5 +6,5 @@ local.properties
 /captures
 .externalNativeBuild
 .DS_Store
-/versionplugin/build
-/versionplugin/.gradle
+/versionplugin/build/
+/versionplugin/.gradle/
