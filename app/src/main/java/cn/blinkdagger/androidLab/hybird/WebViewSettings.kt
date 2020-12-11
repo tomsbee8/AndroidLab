@@ -84,11 +84,7 @@ object WebViewSettings {
                 webSettings.allowUniversalAccessFromFileURLs = false
             }
             // 禁止 file 协议加载 JavaScript
-            if (url!!.startsWith("file://")) {
-                webSettings.javaScriptEnabled = false
-            } else {
-                webSettings.javaScriptEnabled = true
-            }
+            webSettings.javaScriptEnabled = url?.startsWith("file://") == false
             webSettings.allowFileAccess = true //设置为 false 将不能加载本地 html 文件
         }
     }

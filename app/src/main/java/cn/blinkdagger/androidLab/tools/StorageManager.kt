@@ -37,7 +37,7 @@ object StorageManager {
             filePath = if (sdRootPath == null) {
                 throw NullPointerException("SD card is unavailable , please ensure SD Card is present ")
             } else {
-                StringBuilder(externalStoragePath)
+                StringBuilder(externalStoragePath?:"")
             }
         }
     }

@@ -24,12 +24,13 @@ class SkinModeActivity : BaseActivity() {
         setToolbarTitle("NightMode")
         setModeTV(AppCompatDelegate.getDefaultNightMode())
         skin_action_tv.setOnClickListener {
+
+            delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
             if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }else{
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
-            recreate()
         }
     }
 

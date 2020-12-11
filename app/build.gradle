@@ -1,3 +1,8 @@
+import cn.blinkdagger.versionplugin.AndroidX
+import cn.blinkdagger.versionplugin.Google
+import cn.blinkdagger.versionplugin.JetBrains
+import cn.blinkdagger.versionplugin.ThirdLib
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -57,42 +62,42 @@ dependencies {
     implementation project(":qrcode")
 
     //view
-    api 'androidx.appcompat:appcompat:1.1.0'
-    api 'androidx.legacy:legacy-support-v13:1.0.0'
-    api 'androidx.legacy:legacy-support-v4:1.0.0'
-    api 'androidx.cardview:cardview:1.0.0'
-    api 'androidx.constraintlayout:constraintlayout:1.1.3'
-    api 'com.google.android.material:material:1.1.0'
+    api AndroidX.appcompat
+    api AndroidX.supportV4
+    api AndroidX.cardView
+    api AndroidX.constraintLayout
 
-    //widget
+    api JetBrains.kotlin_stdlib
+    api JetBrains.anko_common
+    api JetBrains.coroutines_core
+    api JetBrains.coroutines_android
+
+
+    api Google.material
+    api Google.gson
+    api Google.dagger
+    annotationProcessor Google.dagger_compile
+
 
     //network
-    api 'io.reactivex.rxjava2:rxjava:2.2.0'
-    api 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    api 'com.squareup.okhttp3:okhttp:3.11.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
-    api 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-    api 'com.github.bumptech.glide:okhttp3-integration:4.9.0@aar'
+    api ThirdLib.rxjava2
+    api ThirdLib.rxandroid2
+    api ThirdLib.retrofit
+    api ThirdLib.retrofit_converter
+    api ThirdLib.retrofit_adapter
+    api ThirdLib.okhttp3
+    api ThirdLib.okhttp3_logging
+    api ThirdLib.glide
+    api ThirdLib.glide_intergration
+    annotationProcessor ThirdLib.glide_compile
 
-    //di
-    api 'com.google.dagger:dagger:2.16'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
 
-    //kotlin
-    api 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.60'
-    api 'org.jetbrains.anko:anko-commons:0.10.0'
 
     //others
-    api 'com.orhanobut:logger:1.15'
-    api 'com.google.code.gson:gson:2.8.5'
-    api 'com.airbnb.android:lottie:2.2.0'
-
-    api "net.lingala.zip4j:zip4j:2.1.0"
-    api "org.bouncycastle:bcprov-jdk15on:1.56"
+    api ThirdLib.logger
+    api ThirdLib.lottie
+    api ThirdLib.bouncycastle
+    api ThirdLib.zip4j
 
 
 }

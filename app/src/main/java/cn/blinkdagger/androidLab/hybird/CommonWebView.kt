@@ -33,7 +33,7 @@ import java.util.*
 /**
  * @Author ls
  * @Date 2018/10/23
- * @Description 丁香园通用webView
+ * @Description 通用webView
  * @Version
  */
 class CommonWebView : WebView {
@@ -400,7 +400,7 @@ class CommonWebView : WebView {
                 }
             }
 
-            override fun getDefaultVideoPoster(): Bitmap {
+            override fun getDefaultVideoPoster(): Bitmap? {
                 return if (mCustomWebChromeClient != null) {
                     mCustomWebChromeClient!!.defaultVideoPoster
                 } else {
@@ -408,7 +408,7 @@ class CommonWebView : WebView {
                 }
             }
 
-            override fun getVideoLoadingProgressView(): View {
+            override fun getVideoLoadingProgressView(): View? {
                 return if (mCustomWebChromeClient != null) {
                     mCustomWebChromeClient!!.videoLoadingProgressView
                 } else {

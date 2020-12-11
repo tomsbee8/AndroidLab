@@ -19,17 +19,17 @@ import cn.blinkdagger.androidLab.R
  * @Version
  */
 class WebViewFragment : Fragment(), CommonWebView.LoadListener {
-    private var dxyWebView: CommonWebView? = null
+    private var mWebView: CommonWebView? = null
     private var progressBar: ProgressBar? = null
     private val mRootView: FrameLayout? = null
     private val mCustomView: View? = null
     private val mCurrentProgress = 0
     private var url: String? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_dxy_web_view, container, false)
-        dxyWebView = rootView.findViewById(R.id.dxy_webView)
+        val rootView = inflater.inflate(R.layout.fragment_common_web_view, container, false)
+        mWebView = rootView.findViewById(R.id.dxy_webView)
         progressBar = rootView.findViewById(R.id.dxy_wv_pb)
-        dxyWebView?.setListener(this, this)
+        mWebView?.setListener(this, this)
         return rootView
     }
 
@@ -39,7 +39,7 @@ class WebViewFragment : Fragment(), CommonWebView.LoadListener {
     }
 
     private fun initData() {
-        url = arguments!!.getString(PARAM_ARGS)
+        url = arguments?.getString(PARAM_ARGS)
         if (TextUtils.isEmpty(url)) {
             return
         }
@@ -47,29 +47,29 @@ class WebViewFragment : Fragment(), CommonWebView.LoadListener {
     }
 
     override fun onResume() {
-        dxyWebView!!.onResume()
+        mWebView?.onResume()
         super.onResume()
     }
 
     override fun onPause() {
-        dxyWebView!!.onPause()
+        mWebView?.onPause()
         super.onPause()
     }
 
     override fun onDestroy() {
-        dxyWebView!!.onDestroy()
+        mWebView?.onDestroy()
         super.onDestroy()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
-        dxyWebView!!.onActivityResult(requestCode, resultCode, intent)
+        mWebView?.onActivityResult(requestCode, resultCode, intent)
     }
 
     private fun initWebView() {
-        dxyWebView!!.setUploadFileParam("image/*", "选择图片", true)
-        dxyWebView!!.setListener(this, this)
-        dxyWebView!!.loadUrl(url)
+        mWebView?.setUploadFileParam("image/*", "选择图片", true)
+        mWebView?.setListener(this, this)
+        mWebView?.loadUrl(url)
     }
 
     override fun onPageStarted(url: String?, favicon: Bitmap?) {}
