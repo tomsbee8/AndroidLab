@@ -77,6 +77,43 @@
         <attr name="bottom_line_height" format="dimension"/>
     </declare-styleable>
 
+    <!-- 带小三角形的FrameLayout -->
+    <declare-styleable name="TriangleFrameLayout">
+        <attr name="triangleGravity"  format="enum">
+            <enum name="left" value= "0"/>
+            <enum name="right" value="1"/>
+            <enum name="top" value="2"/>
+            <enum name="bottom" value="3"/>
+            <enum name="center" value="4"/>
+        </attr>
+        <attr name="triangleDirection"  format="enum">
+            <enum name="left" value= "0"/>
+            <enum name="right" value="1"/>
+            <enum name="top" value="2"/>
+            <enum name="bottom" value="3"/>
+        </attr>
+        <attr name="triangleWidth" format="dimension"/>
+        <attr name="triangleHeight" format="dimension"/>
+        <attr name="rectangleRadius"  format="dimension"/>
+        <attr name="rectangleColor" format="color" />
+        <attr name="offset" format="dimension" />
+
+    </declare-styleable>
+
+    <declare-styleable name="SwitchRadioGroup">
+        <attr name="itemWidth"/>
+        <attr name="itemHeight" format="dimension"/>
+        <attr name="bgRadius" format="dimension"/>
+        <attr name="selectedBgRadius" format="dimension"/>
+        <attr name="bgColor" format="color"/>
+        <attr name="selectedBgColor" format="color"/>
+        <attr name="textSize"/>
+        <attr name="selectedTextSize"/>
+        <attr name="textColor"/>
+        <attr name="selectedTextColor" format="color"/>
+        <attr name="itemArray" format="reference"/>
+    </declare-styleable>
+
     <!--  圆形扩散图 -->
     <declare-styleable name="DiffuseView" tools:ignore="ResourceName">
         <attr name="diffuse_color"  format="color"/>
