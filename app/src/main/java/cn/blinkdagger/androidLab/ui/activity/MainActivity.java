@@ -79,6 +79,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnMainItem
                 startActivity(new Intent(this,CollapsingActivity.class));
                 break;
             case 5:
+                VideoPlayerActivity.start(this);
                 break;
             case 6:
                 startActivity(new Intent(this,DynamicBlurActivity.class));

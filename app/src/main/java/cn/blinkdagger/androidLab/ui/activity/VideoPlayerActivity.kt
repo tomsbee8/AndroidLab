@@ -1,5 +1,7 @@
 package cn.blinkdagger.androidLab.ui.activity
 
+import android.content.Context
+import android.content.Intent
 import cn.blinkdagger.androidLab.R
 import cn.blinkdagger.androidLab.base.BaseActivity
 
@@ -11,6 +13,14 @@ import cn.blinkdagger.androidLab.base.BaseActivity
  */
 class VideoPlayerActivity : BaseActivity() {
 
+    companion object{
+
+        @JvmStatic
+        fun start(context: Context){
+            val intent = Intent(context, VideoPlayerActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
 
     override fun getContentLayout(): Int {

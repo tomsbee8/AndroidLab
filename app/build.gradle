@@ -66,6 +66,8 @@ dependencies {
     api AndroidX.supportV4
     api AndroidX.cardView
     api AndroidX.constraintLayout
+    api AndroidX.viewModel
+    api AndroidX.viewModel_ktx
 
     api JetBrains.kotlin_stdlib
     api JetBrains.anko_common
@@ -98,6 +100,8 @@ dependencies {
     api ThirdLib.lottie
     api ThirdLib.bouncycastle
     api ThirdLib.zip4j
+    api ThirdLib.pageStateManager
+    api ThirdLib.permission
 
 
 }

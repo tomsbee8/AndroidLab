@@ -21,5 +21,11 @@
     <string name="title_mediapipe">MediaPip</string>
     <string name="app_current_mode">当前模式：%s</string>
 
+    <string name="loading_in_progress">请稍候…</string>
+    <string name="error_network_exception_toast">无法连接网络，请稍后重试</string>
+    <string name="error_service_unavailable">服务器连接异常，请稍后再试</string>
+    <string name="error_unknown_exception">获取数据异常</string>
+    <string name="error_time_out_exception">服务连接接超时</string>
+
 
 </resources>
