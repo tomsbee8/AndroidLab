@@ -10,7 +10,6 @@
         android:id="@+id/empty_iv"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@mipmap/empty_data"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/empty_tv"

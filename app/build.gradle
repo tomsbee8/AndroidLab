@@ -63,11 +63,12 @@ dependencies {
 
     //view
     api AndroidX.appcompat
-    api AndroidX.supportV4
     api AndroidX.cardView
     api AndroidX.constraintLayout
     api AndroidX.viewModel
     api AndroidX.viewModel_ktx
+    api AndroidX.hilt
+    kapt AndroidX.hiltCompiler
 
     api JetBrains.kotlin_stdlib
     api JetBrains.anko_common
@@ -78,7 +79,7 @@ dependencies {
     api Google.material
     api Google.gson
     api Google.dagger
-    annotationProcessor Google.dagger_compile
+    kapt Google.daggerCompiler
 
 
     //network
@@ -91,7 +92,7 @@ dependencies {
     api ThirdLib.okhttp3_logging
     api ThirdLib.glide
     api ThirdLib.glide_intergration
-    annotationProcessor ThirdLib.glide_compile
+    kapt ThirdLib.glide_compile
 
 
 
@@ -101,7 +102,5 @@ dependencies {
     api ThirdLib.bouncycastle
     api ThirdLib.zip4j
     api ThirdLib.pageStateManager
-    api ThirdLib.permission
-
 
 }

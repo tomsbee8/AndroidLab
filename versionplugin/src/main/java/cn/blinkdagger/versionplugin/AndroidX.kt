@@ -8,10 +8,8 @@ package cn.blinkdagger.versionplugin
  */
 object AndroidX {
 
-    const val appcompat = "androidx.appcompat:appcompat:1.2.0"
+    const val appcompat = "androidx.appcompat:appcompat:1.3.0-alpha02"
     const val coreKtx = "androidx.core:core-ktx:1.3.2"
-    const val supportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
-    const val supportV13 = "androidx.legacy:legacy-support-v13:1.0.0"
 
     const val pagingRuntime = "androidx.paging:paging-runtime:3.0.0"
     const val pagingRuntimeKtx = "androidx.paging:paging-runtime-ktx:3.0.0"
@@ -32,6 +30,9 @@ object AndroidX {
     const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
     const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+
+    const val hilt  = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+    const val hiltCompiler  = "androidx.hilt:hilt-compiler:1.0.0-alpha02"
 
 
 }

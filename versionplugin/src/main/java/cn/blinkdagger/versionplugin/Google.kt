@@ -13,7 +13,7 @@ object Google {
     const val gson = "com.google.code.gson:gson:2.8.6"
 
     const val dagger = "com.google.dagger:dagger:2.16"
-    const val dagger_compile = "com.google.dagger:dagger-compiler:2.16"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:2.16"
 
 
 

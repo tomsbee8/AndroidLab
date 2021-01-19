@@ -1,11 +1,10 @@
-package com.aventlabs.hbdj.base
+package cn.blinkdagger.androidLab.base
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cn.blinkdagger.androidLab.R
-import cn.blinkdagger.androidLab.base.BaseActivity
 import cn.blinkdagger.androidLab.http.CustomException
 import cn.blinkdagger.pagestatemanage.PageStateMachine
 import cn.blinkdagger.pagestatemanage.PageStateManager
@@ -19,7 +18,7 @@ import java.net.SocketTimeoutException
  * @Description
  * @Version
  */
-abstract  class BaseVMActivity <VM : BaseViewModel> : BaseActivity() {
+abstract class BaseVMActivity <VM : BaseViewModel> : BaseActivity() {
 
     protected var mPageStateManager : PageStateManager? = null
 
@@ -35,6 +34,8 @@ abstract  class BaseVMActivity <VM : BaseViewModel> : BaseActivity() {
     override fun onStart() {
         super.onStart()
     }
+
+    abstract fun  providerVMClass() : Class<VM>
 
     private fun initVM() {
         providerVMClass()?.let {
@@ -100,7 +101,6 @@ abstract  class BaseVMActivity <VM : BaseViewModel> : BaseActivity() {
                 is IOException ->{
                     Toast.makeText(applicationContext, R.string.error_network_exception_toast,Toast.LENGTH_SHORT).show()
                 }
-
                 else -> {
                     Toast.makeText(applicationContext, R.string.error_unknown_exception,Toast.LENGTH_SHORT).show()
                 }
@@ -109,9 +109,8 @@ abstract  class BaseVMActivity <VM : BaseViewModel> : BaseActivity() {
     }
 
 
-    open fun providerVMClass(): Class<VM>? = null
-
     override fun onDestroy() {
+
         super.onDestroy()
         lifecycle.removeObserver(viewModel)
     }

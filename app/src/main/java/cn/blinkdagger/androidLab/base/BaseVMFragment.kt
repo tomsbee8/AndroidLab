@@ -1,4 +1,4 @@
-package com.aventlabs.hbdj.base
+package cn.blinkdagger.androidLab.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,6 @@ import cn.blinkdagger.androidLab.http.CustomException
 import cn.blinkdagger.pagestatemanage.PageStateMachine
 import cn.blinkdagger.pagestatemanage.PageStateManager
 import cn.blinkdagger.pagestatemanage.ShowStateListener
-import io.reactivex.functions.Action
 import retrofit2.HttpException
 import java.io.IOException
 

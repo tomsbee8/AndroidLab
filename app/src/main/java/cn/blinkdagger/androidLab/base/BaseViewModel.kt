@@ -1,4 +1,4 @@
-package com.aventlabs.hbdj.base
+package cn.blinkdagger.androidLab.base
 
 import androidx.lifecycle.*
 import cn.blinkdagger.androidLab.entity.BaseResponse

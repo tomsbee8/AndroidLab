@@ -44,4 +44,9 @@ inline fun <T1> T1?.checkAndThen(check: (T1) -> Boolean, then: (T1) -> Unit) {
     }
 }
 
-// persmission
+fun findFirstNotEmptyString(vararg params: String?) : String? {
+    return params.first{ value ->
+        !value.isNullOrEmpty()
+    }
+}
+

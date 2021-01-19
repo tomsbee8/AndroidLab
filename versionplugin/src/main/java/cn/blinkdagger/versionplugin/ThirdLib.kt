@@ -28,7 +28,6 @@ object ThirdLib {
     const val glide_intergration =   "com.github.bumptech.glide:okhttp3-integration:4.9.0@aar"
 
     const val pageStateManager =   "cn.blinkdagger:PageStateManage:1.1"
-    const val permission =  "com.yanzhenjie:permission:2.1.1"
 
 
 
