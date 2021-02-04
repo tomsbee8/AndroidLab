@@ -24,7 +24,7 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
     private var activity: Activity? = null
     private var onShowBgAlpha  = 0f //显示的时候背景的透明度
     private var onShowChangeBg  = false //显示的时候背景透明度是否变化
-    private var onDissmisChangeBg = false //消失的时候背景透明度是否变化
+    private var onDismissChangeBg = false //消失的时候背景透明度是否变化
 
     fun setActivity(activity: Activity?) {
         this.activity = activity
@@ -38,14 +38,14 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
         this.onShowChangeBg = onShowChangeBg
     }
 
-    fun setOnDissmisChangeBg(onDissmisChangeBg: Boolean) {
-        this.onDissmisChangeBg = onDissmisChangeBg
+    fun setOnDismissChangeBg(onDismissChangeBg: Boolean) {
+        this.onDismissChangeBg = onDismissChangeBg
     }
 
     fun showChangeBg() {
         if (onShowChangeBg) {
-            if (activity != null) {
-                setBackgroundAlpha(activity!!, onShowBgAlpha)
+            activity?.let {
+                setBackgroundAlpha(it, onShowBgAlpha)
             }
         }
     }
@@ -61,9 +61,9 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
     }
 
     override fun dismiss() {
-        if (onDissmisChangeBg) {
-            if (activity != null) {
-                setBackgroundAlpha(activity!!, 1.0f)
+        if (onDismissChangeBg) {
+            activity?.let {
+                setBackgroundAlpha(it, 1.0f)
             }
         }
         super.dismiss()
@@ -75,11 +75,11 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
         private var width = ViewGroup.LayoutParams.WRAP_CONTENT //宽度
         private var height = ViewGroup.LayoutParams.WRAP_CONTENT //高度
         @StyleRes
-        private var anmationStyle  = 0 // 动画
+        private var animationStyle  = 0 // 动画
         private var focusable = false //是否可以获取焦点
         private var outsideTouchable  = false //外部是否可以点击
         private var onShowChangeBg = true //显示的时候背景透明度是否变透明【默认变化】
-        private var onDissmisChangeBg = true //消失的时候背景透明度是否还原【默认还原】
+        private var onDismissChangeBg = true //消失的时候背景透明度是否还原【默认还原】
         private var onShowBgAlpha = 0.5f //显示的时候背景的透明度
         private var onKeyBackDissmiss = false //是否拦截返回键消失【默认不拦截】
         private var onDismissListener // 消失监听事件
@@ -108,8 +108,8 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
             return this
         }
 
-        fun setAnmationStyle(@AnimatorRes anmationStyle: Int): Builder {
-            this.anmationStyle = anmationStyle
+        fun setAnimationStyle(@AnimatorRes animationStyle: Int): Builder {
+            this.animationStyle = animationStyle
             return this
         }
 
@@ -129,8 +129,8 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
             return this
         }
 
-        fun setOnDissmisChangeBg(onDissmisChangeBg: Boolean): Builder {
-            this.onDissmisChangeBg = onDissmisChangeBg
+        fun setOnDismissChangeBg(onDismissChangeBg: Boolean): Builder {
+            this.onDismissChangeBg = onDismissChangeBg
             return this
         }
 
@@ -177,15 +177,15 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
             popupWindow.setActivity(activity)
             popupWindow.isOutsideTouchable = outsideTouchable
             popupWindow.isFocusable = focusable
-            popupWindow.setOnDissmisChangeBg(onDissmisChangeBg)
+            popupWindow.setOnDismissChangeBg(onDismissChangeBg)
             popupWindow.setOnShowChangeBg(onShowChangeBg)
             popupWindow.setOnShowBgAlpha(onShowBgAlpha)
             popupWindow.setOnDismissListener(onDismissListener)
             popupWindow.setBackgroundDrawable(ColorDrawable())
             if (onKeyBackDissmiss) {
-                contentView!!.isFocusable = true // 这个很重要
-                contentView!!.isFocusableInTouchMode = true
-                contentView!!.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+                contentView?.isFocusable = true // 这个很重要
+                contentView?.isFocusableInTouchMode = true
+                contentView?.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         popupWindow.dismiss()
                         return@OnKeyListener true
@@ -207,9 +207,9 @@ class CustomPopupWindow private constructor(contentView: View, width: Int, heigh
         val lp = activity.window.attributes
         lp.alpha = bgAlpha
         if (bgAlpha == 1f) {
-            activity.window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND) //不移除该Flag的话,在有视频的页面上的视频会出现黑屏的bug
+            activity.window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         } else {
-            activity.window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND) //此行代码主要是解决在华为手机上半透明效果无效的bug
+            activity.window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         }
         activity.window.attributes = lp
     }

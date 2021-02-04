@@ -1,2 +1,2 @@
 includeBuild("versionplugin")
-include ':app', ':qrcode', ':video'
+include ':app', ':qrcode', ':media'
