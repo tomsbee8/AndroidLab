@@ -1,9 +1,14 @@
 package cn.blinkdagger.androidLab.ui.activity
 
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import cn.blinkdagger.androidLab.R
 import cn.blinkdagger.androidLab.base.BaseActivity
+import cn.blinkdagger.androidLab.entity.TabItem
+import cn.blinkdagger.androidLab.extend.*
+import kotlinx.android.synthetic.main.activity_main.*
+import java.security.Permissions
 
 /**
  * @Author ls
@@ -28,6 +33,17 @@ class VideoPlayerActivity : BaseActivity() {
     }
 
     override fun initView() {
+
+        val s = arrayListExtra<TabItem>("")
+
+        val abs = intent.getParcelableArrayListExtra<TabItem>("ss")
+
+        launchActivity<DrawerActivity>("abc" to "abc" )
+        launchActivity<DrawerActivity>()
+        launchActivityForResult<DrawerActivity>{
+
+        }
+
     }
 
     override fun initData() {

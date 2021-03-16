@@ -2,6 +2,8 @@ package cn.blinkdagger.androidLab.ui.activity;
 
 
 import android.os.Environment;
+
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.util.Log;
@@ -19,6 +21,7 @@ import cn.blinkdagger.androidLab.widget.ConfirmDialog;
 import cn.blinkdagger.androidLab.widget.ConfirmInputDialog;
 
 import static android.os.Environment.DIRECTORY_MUSIC;
+import static org.jetbrains.anko.internals.AnkoInternals.internalStartActivity;
 
 /**
  * @Author ls
@@ -94,24 +97,9 @@ public class DialogExampleActivity extends BaseActivity implements View.OnClickL
                         .setCardRadius(DensityUtil.dp2px(this, 2))
                         .setCancelable(true)
                         .setMaterialStyle(true)
-                        .setOnInitEditViewListener(new ConfirmInputDialog.OnInitEditViewListener() {
-                            @Override
-                            public void initEditView(EditText editText) {
-
-                            }
-                        })
-                        .setOnLeftActionListener(new ConfirmInputDialog.OnActionButtonClickListener() {
-                            @Override
-                            public void onButtonClick(Editable editable) {
-                                Toast.makeText(DialogExampleActivity.this, editable.toString(),Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setOnRightActionListener(new ConfirmInputDialog.OnActionButtonClickListener() {
-                            @Override
-                            public void onButtonClick(Editable editable) {
-                                Toast.makeText(DialogExampleActivity.this, "确认："+editable.toString(),Toast.LENGTH_SHORT).show();
-                            }
-                        })
+                        .setOnInitEditViewListener(editText -> { })
+                        .setOnLeftActionListener(editable -> Toast.makeText(DialogExampleActivity.this, editable.toString(),Toast.LENGTH_SHORT).show())
+                        .setOnRightActionListener(editable -> Toast.makeText(DialogExampleActivity.this, "确认："+editable.toString(),Toast.LENGTH_SHORT).show())
                         .build()
                         .show(getSupportFragmentManager());
                 break;

@@ -42,22 +42,23 @@ class ConfirmCancelDialog : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val bundle = arguments
-        if (bundle != null) {
+        arguments?.let {bundle ->
             marginLeft = bundle.getInt(KEY_MARGIN_LEFT, 0)
             marginRight = bundle.getInt(KEY_MARGIN_RIGHT, 0)
             dialogWidthPercent = bundle.getFloat(KEY_WIDTH_PERCENT, 0.85f)
         }
-        dialog!!.window.decorView.setPadding(marginLeft, 0, marginRight, 0) //消除边距
-        val lp = dialog!!.window.attributes
-        if (activity != null && marginLeft == 0 && marginRight == 0) {
-            lp.width = (ScreenUtil.getScreenWidth(activity!!) * dialogWidthPercent).toInt()
-        } else {
-            lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        dialog?.window?.let {
+            it.decorView.setPadding(marginLeft, 0, marginRight, 0) //消除边距
+            val lp = it.attributes
+            if (activity != null && marginLeft == 0 && marginRight == 0) {
+                lp.width = (ScreenUtil.getScreenWidth(requireActivity()) * dialogWidthPercent).toInt()
+            } else {
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT
+            }
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+            it.attributes = lp
+            it.setGravity(Gravity.CENTER)
         }
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-        dialog!!.window.attributes = lp
-        dialog!!.window.setGravity(Gravity.CENTER)
         return inflater.inflate(R.layout.dialog_confirm_cancel, container)
     }
 

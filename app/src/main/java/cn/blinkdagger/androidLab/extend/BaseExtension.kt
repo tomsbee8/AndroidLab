@@ -6,9 +6,9 @@ package cn.blinkdagger.androidLab.extend
  * @Description
  * @Version
  */
-inline fun ktTry(block: () -> Unit) {
+inline fun ktTry(method: () -> Unit) {
     try {
-        block()
+        method()
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -38,15 +38,19 @@ inline fun ifNotNullOrBlank(value1: String?, value2: String?, value3: String?, b
     }
 }
 
-inline fun <T1> T1?.checkAndThen(check: (T1) -> Boolean, then: (T1) -> Unit) {
-    if (this != null && check(this)) {
-        then(this)
-    }
-}
-
 fun findFirstNotEmptyString(vararg params: String?) : String? {
     return params.first{ value ->
         !value.isNullOrEmpty()
     }
 }
+
+inline fun String?.ifNotEmpty(block: (String) -> Unit) {
+    if (!this.isNullOrEmpty()) block(this)
+}
+
+inline fun String?.ifNotBlank(block: (String) -> Unit) {
+    if (!this.isNullOrBlank()) block(this)
+}
+
+
 

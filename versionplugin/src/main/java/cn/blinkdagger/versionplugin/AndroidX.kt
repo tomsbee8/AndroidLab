@@ -8,7 +8,7 @@ package cn.blinkdagger.versionplugin
  */
 object AndroidX {
 
-    const val appcompat = "androidx.appcompat:appcompat:1.3.0-alpha02"
+    const val appcompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.3.2"
 
     const val pagingRuntime = "androidx.paging:paging-runtime:3.0.0"

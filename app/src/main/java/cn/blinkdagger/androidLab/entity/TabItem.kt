@@ -1,5 +1,8 @@
 package cn.blinkdagger.androidLab.entity
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * 类描述：底部导航栏图标文字
  * 创建人：ls
@@ -8,19 +11,13 @@ package cn.blinkdagger.androidLab.entity
  * 修改时间：
  * 修改备注：
  */
-class TabItem {
-    private val tabId //Tab的唯一标识
-            : String? = null
-    private val tabIndex //Tab的唯一索引
-            = 0
-    private val tabNormalIconName //未选中状态图标名称
-            : String? = null
-    private val tabCheckedIconName //选中状态图标名称
-            : String? = null
-    private val tabText // 文字
-            : String? = null
-    private val tabNormalTextColor //未选中状态文字颜色
-            : String? = null
-    private val tabCheckedTextColor //选中状态文字颜色
-            : String? = null
-}
+@Parcelize
+class TabItem(
+        val tabId: String? = null, //Tab的唯一标识
+        val tabIndex : Int = 0, //Tab的唯一索引
+        val tabNormalIconName: String? = null, //未选中状态图标名称
+        val tabCheckedIconName: String? = null, //选中状态图标名称
+        val tabText: String? = null, // 文字
+        val tabNormalTextColor: String? = null, //未选中状态文字颜色
+        val tabCheckedTextColor: String? = null, //选中状态文字颜色
+) : Parcelable

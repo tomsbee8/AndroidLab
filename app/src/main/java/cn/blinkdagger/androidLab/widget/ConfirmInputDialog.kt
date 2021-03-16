@@ -43,8 +43,8 @@ class ConfirmInputDialog : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val bundle = arguments
-        if (bundle != null) {
+
+        arguments?.let{ bundle ->
             marginLeft = bundle.getInt(KEY_MARGIN_LEFT, 0)
             marginRight = bundle.getInt(KEY_MARGIN_RIGHT, 0)
             dialogWidthPercent = bundle.getFloat(KEY_WIDTH_PERCENT, 0.85f)
@@ -52,7 +52,7 @@ class ConfirmInputDialog : DialogFragment() {
         dialog!!.window.decorView.setPadding(marginLeft, 0, marginRight, 0) //消除边距
         val lp = dialog!!.window.attributes
         if (activity != null && marginLeft == 0 && marginRight == 0) {
-            lp.width = (ScreenUtil.getScreenWidth(activity!!) * dialogWidthPercent).toInt()
+            lp.width = (ScreenUtil.getScreenWidth(requireActivity()) * dialogWidthPercent).toInt()
         } else {
             lp.width = WindowManager.LayoutParams.MATCH_PARENT
         }
@@ -189,14 +189,14 @@ class ConfirmInputDialog : DialogFragment() {
     /**
      * 用于初始化EditText
      */
-    interface OnInitEditViewListener {
+    fun interface OnInitEditViewListener {
         fun initEditView(editText: EditText?)
     }
 
     /**
      * 用于监听EditText
      */
-    interface OnActionButtonClickListener {
+    fun interface OnActionButtonClickListener {
         fun onButtonClick(editable: Editable?)
     }
 
